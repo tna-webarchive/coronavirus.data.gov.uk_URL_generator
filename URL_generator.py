@@ -14,20 +14,20 @@ today = datetime.today().strftime('%Y-%m-%d')
 ##### 3. Function to gather all area names and catergorise by area type ######
 
 def get_areaNames():
-    ENDPOINT = "https://api.coronavirus.data.gov.uk/v1/lookup?"
+    ENDPOINT = "https://api.coronavirus.data.gov.uk/v1/lookup?"       #3.1 lookup query url root
     areaNames = [[]] * len(types)
 
     for i, type in enumerate(types):
-        filters = [f"areaType={types[i]}"]   #3.1 Filters by date so only one entry per name. To Add more enter another value in list
-        structure = {"name": "areaName"}     #3.2 These are the datapoints returned. To add more enter another value in dictionary
-        api_params = {"filters": str.join(";", filters), "structure": dumps(structure, separators=(",", ":")),}  #3.3 Creates URL string
+        filters = [f"areaType={types[i]}"]   #3.2 To Add more filters enter another value in list
+        structure = {"name": "areaName"}     #3.2 To add more return data enter another value in dictionary
+        api_params = {"filters": str.join(";", filters), "structure": dumps(structure, separators=(",", ":")),}  #3.3 Creates query URL string
         response = get(ENDPOINT, params=api_params, timeout=10)  #3.4 API call
 
         if response.status_code >= 400:
             raise RuntimeError(f'Request failed: {response.text}')  #3.5 Raises error if request fails
 
         names = response.json()["data"]                         #3.6 Creates list of names from JSON response
-        names = [x["name"].replace(" ", "%20") for x in names]  #3.7 Replaces sapec with %20 for URL
+        names = [x["name"].replace(" ", "%20") for x in names]  #3.7 Replaces sapce with %20 for URL
         areaNames[i] = names                                    #3.8 Adds list to master list of Area Names
 
     return areaNames
@@ -70,6 +70,7 @@ def get_all_urls():
         all_urls.append(extra)                              #4.8 Appends extra URLs
 
     return set(all_urls)                                    #4.9 Returns the list, randomised (set())
+
 
 ####### 5. Function to write all generated URLs to txt file #######
 
