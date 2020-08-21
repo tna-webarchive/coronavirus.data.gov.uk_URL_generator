@@ -44,35 +44,36 @@ def get_all_urls():
     for i, type in enumerate(types):
         with open(f"{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
             urls = urls.read()
-            urls = urls.split("\n")
+            urls = urls.split("\n")               #4.3 Creates list of URL templates
         for url in urls:
             if "{name}" in url:
                 for name in areaNames[i]:
-                    named_url = url.replace("{name}", name)
+                    named_url = url.replace("{name}", name)     #4.4 Replaces {name} in template to specific selected areaName
                     if "format=" in named_url:
-                        for format in formats:
+                        for format in formats:                  #4.5 goes through file formats to generate csv, xml, json requests.
                             formatted_url = named_url.replace("format=", f"format={format}")
-                            all_urls.append(formatted_url)
+                            all_urls.append(formatted_url)      #4.6 adds created URLs to list all_urls
                     else:
-                        all_urls.append(named_url)
+                        all_urls.append(named_url)              #4.6
             elif "format=" in url:
                 for format in formats:
                     formatted_url = url.replace("format=", f"format={format}")
-                    all_urls.append(formatted_url)
+                    all_urls.append(formatted_url)              #4.6
             else:
-                all_urls.append(url)
+                all_urls.append(url)                            #4.6
 
     with open("extras.txt", "r") as extras:
         extras = extras.read()
-        extras = extras.split("\n")
+        extras = extras.split("\n")                         #4.7 Creats list of extra URls from extras.txt
 
     for extra in extras:
-        all_urls.append(extra)
+        all_urls.append(extra)                              #4.8 Appends extra URLs
 
-    return set(all_urls)
+    return set(all_urls)                                    #4.9 Returns the list, randomised (set())
 
 ####### 5. Function to write all generated URLs to txt file #######
-def export_urls(all_urls, file_name=f"{today}_covid_dashboard_urls"):
+
+def export_urls(all_urls, file_name=f"{today}_covid_dashboard_urls"):        #5.1 Takes two args, list of URLs and file name. Defualt is "{date}_covid_dashboard_urls"
     all_urls = "\n".join(all_urls)
     with open(f"{file_name}.txt", "w") as dest:
         dest.write(all_urls)
