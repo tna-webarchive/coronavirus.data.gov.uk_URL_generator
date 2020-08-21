@@ -1,0 +1,1 @@
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=utla&latestBy=cumCasesByPublishDate&structure=%7B%22areaName%22:%22areaName%22,%22cumCasesByPublishDate%22:%22cumCasesByPublishDate%22,%22cumCasesByPublishDateRate%22:%22cumCasesByPublishDateRate%22%7D
