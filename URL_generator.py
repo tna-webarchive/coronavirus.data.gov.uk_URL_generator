@@ -55,12 +55,14 @@ def get_all_urls():
                             all_urls.append(formatted_url)      #4.6 adds created URLs to list all_urls
                     else:
                         all_urls.append(named_url)              #4.6
+                        #named_url.replace %20 %2520
             elif "format=" in url:
                 for format in formats:
                     formatted_url = url.replace("format=", f"format={format}")
                     all_urls.append(formatted_url)              #4.6
             else:
                 all_urls.append(url)                            #4.6
+                #url.replace % 20 % 2520
 
     with open("extras.txt", "r") as extras:
         extras = extras.read()
@@ -74,7 +76,7 @@ def get_all_urls():
 
     all_urls = all_urls + newrls
 
-    return set(all_urls)                                    #4.10 Returns the list, randomised (set())
+    return set(all_urls)                                   #4.10 Returns the list, randomised (set())
 
 
 ####### 5. Function to write all generated URLs to txt file #######
