@@ -69,7 +69,12 @@ def get_all_urls():
     for extra in extras:
         all_urls.append(extra)                              #4.8 Appends extra URLs
 
-    return set(all_urls)                                    #4.9 Returns the list, randomised (set())
+
+    newrls = [url.replace("%20", "%2520") for url in all_urls  if "%20" in url]    #4.9 Creates list of urls with %2520 in place of %20 to fix replayweb.page issue.
+
+    all_urls = all_urls + newrls
+
+    return set(all_urls)                                    #4.10 Returns the list, randomised (set())
 
 
 ####### 5. Function to write all generated URLs to txt file #######
