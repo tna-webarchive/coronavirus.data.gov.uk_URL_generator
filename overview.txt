@@ -23,4 +23,6 @@ https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName=Wal
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22newDeaths28DaysByPublishDate%22:%22newDeaths28DaysByPublishDate%22%7D
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22cumDeaths28DaysByPublishDate%22:%22cumDeaths28DaysByPublishDate%22%7D
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22newDeaths28DaysByPublishDate%22:%22newDeaths28DaysByPublishDate%22,%22cumDeaths28DaysByPublishDate%22:%22cumDeaths28DaysByPublishDate%22%7D
-https://api.coronavirus.data.gov.uk/v1/data?filters=areaName={name};areaType=overview&structure=%7B%22date%22:%22date%22,%22cumCasesByPublishDate%22:%22cumCasesByPublishDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaName={name};areaType=overview&structure=%7B%22date%22:%22date%22,%22cumCasesByPublishDate%22:%22cumCasesByPublishDate%22%
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview;areaName={name}&structure=%7B%22date%22:%22date%22,%22cumTestsByPublishDate%22:%22cumTestsByPublishDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaName={name};areaType=overview&structure=%7B%22date%22:%22date%22,%22newCasesByPublishDate%22:%22newCasesByPublishDate%22,%22cumCasesByPublishDate%22:%22cumCasesByPublishDate%22%7D
