@@ -42,7 +42,7 @@ def get_all_urls():
     all_urls = []
 
     for i, type in enumerate(types):
-        with open(f"{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
+        with open(f"URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
             urls = urls.read()
             urls = urls.split("\n")               #4.3 Creates list of URL templates
         for url in urls:
@@ -64,7 +64,7 @@ def get_all_urls():
                 all_urls.append(url)                            #4.6
                 #url.replace % 20 % 2520
 
-    with open("extras.txt", "r") as extras:
+    with open("URL_templates/extras.txt", "r") as extras:
         extras = extras.read()
         extras = extras.split("\n")                         #4.7 Creats list of extra URls from extras.txt
 
