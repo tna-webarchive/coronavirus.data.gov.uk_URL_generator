@@ -4,7 +4,6 @@ from requests import get
 from json import dumps
 from datetime import datetime
 
-
 ######### 2. Define global variables ########
 
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
@@ -44,25 +43,31 @@ def get_all_urls():
     for i, type in enumerate(types):
         with open(f"URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
             urls = urls.read()
-            urls = urls.split("\n")               #4.3 Creates list of URL templates
+            urls = urls.split("\n")                             #4.3 Creates list of URL templates
         for url in urls:
             if "{name}" in url:
                 for name in areaNames[i]:
                     named_url = url.replace("{name}", name)     #4.4 Replaces {name} in template to specific selected areaName
-                    if "format=" in named_url:
+                    if named_url[-7:] == "format=":
                         for format in formats:                  #4.5 goes through file formats to generate csv, xml, json requests.
                             formatted_url = named_url.replace("format=", f"format={format}")
                             all_urls.append(formatted_url)      #4.6 adds created URLs to list all_urls
+                    elif type not in ["overview", "extras"] and named_url[-6:] == "%22%7D":
+                        all_urls.append(named_url)
+                        named_json = named_url + "&format=json"
+                        all_urls.append(named_json)
                     else:
                         all_urls.append(named_url)              #4.6
-                        #named_url.replace %20 %2520
-            elif "format=" in url:
+            elif url[-7:] == "format=":
                 for format in formats:
                     formatted_url = url.replace("format=", f"format={format}")
                     all_urls.append(formatted_url)              #4.6
+            elif type not in ["overview", "extras"] and url[-6:] == "%22%7D":
+                all_urls.append(url)
+                url_json = url + "&format=json"
+                all_urls.append(url_json)
             else:
                 all_urls.append(url)                            #4.6
-                #url.replace % 20 % 2520
 
     with open("URL_templates/extras.txt", "r") as extras:
         extras = extras.read()
@@ -74,7 +79,21 @@ def get_all_urls():
 
     newrls = [url.replace("%20", "%2520") for url in all_urls  if "%20" in url]    #4.9 Creates list of urls with %2520 in place of %20 to fix replayweb.page issue.
 
-    all_urls = all_urls + newrls
+    staging_urls = [url.replace("https://api.coronavirus.data.gov.uk", "https://api.coronavirus-staging.data.gov.uk") for url in all_urls  if "https://api.coronavirus.data.gov.uk" in url]
+
+    all_urls = all_urls + newrls + staging_urls
+
+    to_reorder = [url for url in all_urls if ";" in url and url.count(";") == 1]
+
+    for url in to_reorder:
+        split = url.split("=", 1)
+        base = split[0]
+        rest = split[1].split("&", 1)
+        structure = rest[1]
+        filters = rest[0].split(";")
+        filters.reverse()
+        reorder = base + "=" + ";".join(filters) + "&" + structure
+        all_urls.append(reorder)
 
     return set(all_urls)                                   #4.10 Returns the list, randomised (set())
 
