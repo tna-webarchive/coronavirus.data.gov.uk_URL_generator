@@ -55,6 +55,11 @@ https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j85&tid=UA-1614
 https://c19pub.azureedge.net/assets/modals/cardMetadata/healthcare/cardPatientsAdmittedToHospitalByAge.md
 https://coronavirus.data.gov.uk/static/js/12.3953e677.chunk.js
 https://c19pub.azureedge.net/assets/cms/deaths.json
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.csv
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.json
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.xml
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.xlsx
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.xml
 https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j85&tid=UA-161400643-2&cid=1856641749.1597051833&jid=1166459517&gjid=940212905&_gid=1685632546.1598969230&_u=CACAAUABAAAAAC~&z=1739726900
 https://c19pub.azureedge.net/assets/modals/cardMetadata/deaths/cardDeaths28DaysTimeSeries.md
 https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j85&tid=UA-161400643-2&cid=1856641749.1597051833&jid=1023307968&gjid=1484237354&_gid=1685632546.1598969230&_u=CACAAUABAAAAAC~&z=1190559044
