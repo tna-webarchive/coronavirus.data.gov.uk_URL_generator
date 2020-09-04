@@ -100,7 +100,7 @@ def get_all_urls():
 
     with open("URL_templates/lookups.txt", "r") as lookups:
         lookups = lookups.read()
-        lookups = lookups.split("\n")  # 4.7 Creates list of lookup URls from extras.txt
+        lookups = lookups.split("\n")               # 4.7 Creates list of lookup URls from lookups.txt
 
     num_urls = len(all_urls)
     num_lookups = len(lookups)
