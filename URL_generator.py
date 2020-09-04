@@ -83,7 +83,7 @@ def get_all_urls():
 
     all_urls = all_urls + newrls + staging_urls
 
-    to_reorder = [url for url in all_urls if ";" in url and url.count(";") == 1]
+    to_reorder = [url for url in all_urls if ((";" in url and url.count(";") == 1) and "overview" in url)]
 
     for url in to_reorder:
         split = url.split("=", 1)
