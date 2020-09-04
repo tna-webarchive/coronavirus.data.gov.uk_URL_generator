@@ -95,7 +95,21 @@ def get_all_urls():
         reorder = base + "=" + ";".join(filters) + "&" + structure
         all_urls.append(reorder)
 
-    return set(all_urls)                                   #4.10 Returns the list, randomised (set())
+
+    all_urls = list(set(all_urls))                #Randomises list
+
+    with open("URL_templates/lookups.txt", "r") as lookups:
+        lookups = lookups.read()
+        lookups = lookups.split("\n")  # 4.7 Creates list of lookup URls from extras.txt
+
+    num_urls = len(all_urls)
+    num_lookups = len(lookups)
+    step = num_urls / num_lookups
+
+    for url, index in zip(lookups, range(0, num_urls, int(step))):
+        all_urls.insert(index, url)                        # evenly distributes lookup queries to avoid throttling
+
+    return all_urls                                      #4.10 Returns the list
 
 
 ####### 5. Function to write all generated URLs to txt file #######
