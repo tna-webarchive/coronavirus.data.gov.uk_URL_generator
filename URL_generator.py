@@ -3,6 +3,7 @@
 from requests import get
 from json import dumps
 from datetime import datetime
+import os
 
 ######### 2. Define global variables ########
 
@@ -114,19 +115,48 @@ def get_all_urls():
 
 ####### 5. Function to write all generated URLs to txt file #######
 
-def export_urls(all_urls, file_name=f"{today}_covid_dashboard_urls"):        #5.1 Takes two args, list of URLs and file name. Defualt is "{date}_covid_dashboard_urls"
-    all_urls = "\n".join(all_urls)
-    with open(f"{file_name}.txt", "w") as dest:
-        dest.write(all_urls)
+def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1 Takes two args, list of URLs and file name. Defualt is "{date}_covid_dashboard_urls"
+    yaml_template = f"""crawls:
+      - name: {file_name}
+        crawl_type: single-page
+        num_browsers: 1
+        num_tabs: 1
+        coll: {file_name}
+        mode: record
+
+        seed_urls:
+          - \u007bURLS\u007d
+        behavior_max_time: 100
+        browser: chrome:73
+        cache: always"""
+
+    home = os.path.expanduser("~")
+    CVDB_folder = home + "/covid_dashboard"
+    if os.path.isdir(CVDB_folder) == False:
+        os.mkdir(CVDB_folder)
+    os.chdir(CVDB_folder)
+    urls = "\n      - ".join(all_urls[:10])
+    yaml = yaml_template.replace("{URLS}", urls)
+    with open(f"{file_name}.yaml", "w") as dest:
+        dest.write(yaml)
+
+    os.system(f"sudo browsertrix crawl create {file_name}.yaml")
+
+    print(f"When complete, warc will be located at:\n{home}/browsertrix/webarchive/collections/{file_name}")
+
 
 
 ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-export_urls(all_urls)
+run_browsertrix(all_urls)
 
 
 ##### NEXT STEPS
-##### Export straight to YAML
+##### YAML as txt file to edit config easily.
 ##### Run Browsertrix job from cmd line ( os.system() )
+##### Figure out correct input for UX
+##### combine the warcs
+##### rerun 429, 307, etc.
+##### compare 404s in warc and live
 
