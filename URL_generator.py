@@ -5,6 +5,9 @@ from json import dumps
 from datetime import datetime
 import os
 
+home = os.path.expanduser("~")
+os.chdir(f"{home}/coronavirus.data.gov.uk_URL_generator")
+
 ######### 2. Define global variables ########
 
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
@@ -124,22 +127,22 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     num_tabs: 2
     coll: {file_name}
     mode: record
+
     scopes:
       - {{DOMAINS}}
 
     seed_urls:
       - {{URLS}}
-
     behavior_max_time: 80
     browser: chrome:73
     cache: always"""
 
-    home = os.path.expanduser("~")
+    global home
     CVDB_folder = home + "/covid_dashboard"
     if os.path.isdir(CVDB_folder) == False:
         os.mkdir(CVDB_folder)
     os.chdir(CVDB_folder)
-    domains = list(set(["Domain: " + x.split("/")[2] for x in all_urls]))
+    domains = list(set(["domain: " + x.split("/")[2] for x in all_urls]))
     domains = "\n      - ".join(domains)
     urls = "\n      - ".join(all_urls[:10])
     yaml = yaml_template.replace("{DOMAINS}", domains)
