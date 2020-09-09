@@ -117,26 +117,34 @@ def get_all_urls():
 
 def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1 Takes two args, list of URLs and file name. Defualt is "{date}_covid_dashboard_urls"
     yaml_template = f"""crawls:
-      - name: {file_name}
-        crawl_type: single-page
-        num_browsers: 1
-        num_tabs: 1
-        coll: {file_name}
-        mode: record
+  - name: {file_name}
+    crawl_type: custom
+    crawl_depth: 2
+    num_browsers: 1
+    num_tabs: 2
+    coll: {file_name}
+    mode: record
+    scopes:
+      - {{DOMAINS}}
 
-        seed_urls:
-          - \u007bURLS\u007d
-        behavior_max_time: 100
-        browser: chrome:73
-        cache: always"""
+    seed_urls:
+      - {{URLS}}
+
+    behavior_max_time: 80
+    browser: chrome:73
+    cache: always"""
 
     home = os.path.expanduser("~")
     CVDB_folder = home + "/covid_dashboard"
     if os.path.isdir(CVDB_folder) == False:
         os.mkdir(CVDB_folder)
     os.chdir(CVDB_folder)
+    domains = list(set(["Domain: " + x.split("/")[2] for x in all_urls]))
+    domains = "\n      - ".join(domains)
     urls = "\n      - ".join(all_urls[:10])
-    yaml = yaml_template.replace("{URLS}", urls)
+    yaml = yaml_template.replace("{DOMAINS}", domains)
+    yaml = yaml.replace("{URLS}", urls)
+
     with open(f"{file_name}.yaml", "w") as dest:
         dest.write(yaml)
 
@@ -145,18 +153,17 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     print(f"When complete, warc will be located at:\n{home}/browsertrix/webarchive/collections/{file_name}")
 
 
-
-###### 6. Run Program #####
+# ###### 6. Run Program #####
 
 all_urls = get_all_urls()
 run_browsertrix(all_urls)
-
-
-##### NEXT STEPS
-##### YAML as txt file to edit config easily.
-##### Run Browsertrix job from cmd line ( os.system() )
-##### Figure out correct input for UX
-##### combine the warcs
-##### rerun 429, 307, etc.
-##### compare 404s in warc and live
+#
+#
+# ##### NEXT STEPS
+# ##### YAML as txt file to edit config easily.
+# ##### Run Browsertrix job from cmd line ( os.system() )
+# ##### Figure out correct input for UX
+# ##### combine the warcs
+# ##### rerun 429, 307, etc.
+# ##### compare 404s in warc and live
 
