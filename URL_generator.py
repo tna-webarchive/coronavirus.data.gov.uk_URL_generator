@@ -11,7 +11,7 @@ os.chdir(f"{home}/coronavirus.data.gov.uk_URL_generator")
 ######### 2. Define global variables ########
 
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
-today = datetime.today().strftime('%Y-%m-%d')
+today = datetime.today().strftime('%Y%m%d%H%M%S')
 
 
 ##### 3. Function to gather all area names and catergorise by area type ######
@@ -144,7 +144,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     os.chdir(CVDB_folder)
     domains = list(set(["domain: " + x.split("/")[2] for x in all_urls]))
     domains = "\n      - ".join(domains)
-    urls = "\n      - ".join(all_urls[:10])
+    urls = "\n      - ".join(all_urls)
     yaml = yaml_template.replace("{DOMAINS}", domains)
     yaml = yaml.replace("{URLS}", urls)
 
