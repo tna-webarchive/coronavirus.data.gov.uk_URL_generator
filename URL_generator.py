@@ -187,9 +187,9 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     time.sleep(60)
     while get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}") != cdx:
         cdx = get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}")
-        time.sleep(60)
+        time.sleep(81)
 
-    print("Crawl finished")
+    print("\nCrawl finished")
 
     errors = check_errors(cdx)
     to_patch = errors[0]
@@ -199,14 +199,17 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     to_patch = [x[1].split("\":\"")[1] for x in to_patch]
 
-    answer = input("Would you like to patch these? [Y/n]")
-    if answer.lower == "y":
-        run_browsertrix(to_patch, f"PATCH{file_name}")
-    else:
-        print("Crawl complete.")
-        print(f"Crawl {file_name} had {len(manual_patch)} 429 errors (below).")
-        print("Patch them manually in Conifer:")
-        print(manual_patch)
+    while True:
+        answer = input("Would you like to patch these? [Y/n]")
+        if answer.lower == "y":
+            run_browsertrix(to_patch, f"PATCH{file_name}")
+            break
+        elif answer.lower =="n":
+            print("Crawl complete.")
+            print(f"Crawl {file_name} had {len(manual_patch)} 429 errors (below).")
+            print("Patch them manually in Conifer:")
+            print(manual_patch)
+            break
 
     #return f"{home}/browsertrix/webarchive/collections/{file_name}"
 
