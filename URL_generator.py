@@ -185,8 +185,8 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     time.sleep(200)
     cdx = get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}")
     time.sleep(60)
-    while get_cdx() != cdx:
-        cdx = get_cdx()
+    while get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}") != cdx:
+        cdx = get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}")
         time.sleep(60)
 
     print("Crawl finished")
