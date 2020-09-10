@@ -206,7 +206,6 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     errors = check_errors(cdx)
     to_patch = errors[0]
     manual_patch = [x[1].split("\":\"")[1] for x in errors[1]]
-    manual_patch = "\n".join(manual_patch)
 
     print(f"\nCrawl {file_name} has {len(to_patch)} 403 errors.")
 
@@ -220,6 +219,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
         elif answer.lower =="n":
             print("Crawl complete.")
             print(f"\nCrawl {file_name} had {len(manual_patch)} 429 errors (below).")
+            manual_patch = "\n".join(manual_patch)
             print("Patch them manually in Conifer:")
             print(manual_patch)
             break
