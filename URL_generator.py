@@ -206,7 +206,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
             break
         elif answer.lower =="n":
             print("Crawl complete.")
-            print(f"Crawl {file_name} had {len(manual_patch)} 429 errors (below).")
+            print(f"\nCrawl {file_name} had {len(manual_patch)} 429 errors (below).")
             print("Patch them manually in Conifer:")
             print(manual_patch)
             break
