@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 
 home = os.path.expanduser("~")
-os.chdir(f"{home}/coronavirus.data.gov.uk_URL_generator-master")
+os.chdir(f"{home}/coronavirus.data.gov.uk_URL_generator")
 
 ######### 2. Define global variables ########
 
