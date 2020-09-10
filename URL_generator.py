@@ -122,7 +122,7 @@ def get_all_urls():
 
 ####### 5. Function to write all generated URLs to txt file #######
 
-def get_cdx():
+def get_cdx(crawl_loc):
     with open(f"{crawl_loc}/indexes/autoindex.cdxj", "r") as cdx:
         cdx = cdx.read()
     return cdx
@@ -176,14 +176,12 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     with open(f"{timest}/{file_name}.yaml", "w") as dest:
         dest.write(yaml)
-    with open(f"{timest}/timestamp.txt", "w") as dest:
-        dest.write(timest)
 
-    os.system(f"sudo browsertrix crawl create {file_name}.yaml")
+    os.system(f"sudo browsertrix crawl create {timest}/{file_name}.yaml")
 
     print("You will be alerted when the crawl is complete.\nTo check crawl's status enter 'browsertrix crawl list' into the terminal" )
 
-    cdx = get_cdx()
+    cdx = get_cdx(f"{home}/browsertrix/webarchive/{file_name}")
     time.sleep(60)
     while get_cdx() != cdx:
         cdx = get_cdx()
