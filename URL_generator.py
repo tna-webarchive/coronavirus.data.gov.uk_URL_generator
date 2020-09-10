@@ -3,7 +3,7 @@
 from requests import get
 from json import dumps
 from datetime import datetime
-import os, time
+import os, time, subprocess
 
 apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
 initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; cd coronavirus.data.gov.uk_URL_generator"
@@ -16,7 +16,7 @@ home = os.path.expanduser("~")
 
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
 today = datetime.today().strftime('%Y%m%d%H%M%S')
-
+crawl_type = "custom"
 
 ##### 3. Function to gather all area names and catergorise by area type ######
 
@@ -122,11 +122,6 @@ def get_all_urls():
 
 ####### 5. Function to write all generated URLs to txt file #######
 
-def get_cdx(crawl_loc):
-    with open(f"{crawl_loc}/indexes/autoindex.cdxj", "r") as cdx:
-        cdx = cdx.read()
-    return cdx
-
 def check_errors(cdx):
     cdx = cdx.split("\n")
 
@@ -140,11 +135,32 @@ def check_errors(cdx):
 
     return [to_patch, manual_patch]
 
+def check():
+    check = subprocess.run("browsertrix crawl list", shell =True, stdout=subprocess.PIPE).stdout.decode("utf-8")
+    check = check.split("\n")[1]
+    check = check.split(" ")
+    while "" in check:
+        check.remove("")
+    check = " ".join(check)
+    check = check.split(" custom ")
+    status = check[0].split(" ")[-1]
+    check = check[1].split(" ")
+    total = int(check[4])
+    to_crawl = total - int(check[2])
+    ratio = int((to_crawl/total)*40)
+    white = ratio*"□"
+    black = (40-ratio)*"■"
+    print(f"Crawling... {white}{black} {to_crawl}/{total} URLs crawled", flush=True, end="\r")
+    if status == "done":
+        return True
+    else:
+        return False
+
 
 def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1 Takes two args, list of URLs and file name. Defualt is "{date}_covid_dashboard_urls"
     yaml_template = f"""crawls:
   - name: {file_name}
-    crawl_type: custom
+    crawl_type: {crawl_type}
     crawl_depth: 2
     num_browsers: 1
     num_tabs: 2
@@ -179,17 +195,13 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     os.system(f"sudo browsertrix crawl create {timest}/{file_name}.yaml")
 
-    time.sleep(10)
-    print("\nYou will be alerted when the crawl is complete.\nTo check crawl's status open a new terminal and enter 'browsertrix crawl list'" )
-
-    time.sleep(200)
-    cdx = get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}")
-    time.sleep(60)
-    while get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}") != cdx:
-        cdx = get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}")
-        time.sleep(81)
+    while not check():
+        time.sleep(120)
 
     print("\nCrawl finished")
+
+    with open(f"{home}/browsertrix/webarchive/collections/{file_name}/indexes/autoindex.cdxj", "r") as cdx:
+        cdx = cdx.read()
 
     errors = check_errors(cdx)
     to_patch = errors[0]
