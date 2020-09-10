@@ -179,9 +179,11 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     os.system(f"sudo browsertrix crawl create {timest}/{file_name}.yaml")
 
-    print("You will be alerted when the crawl is complete.\nTo check crawl's status enter 'browsertrix crawl list' into the terminal" )
+    time.sleep(10)
+    print("\nYou will be alerted when the crawl is complete.\nTo check crawl's status open a new terminal and enter 'browsertrix crawl list'" )
 
-    cdx = get_cdx(f"{home}/browsertrix/webarchive/{file_name}")
+    time.sleep(200)
+    cdx = get_cdx(f"{home}/browsertrix/webarchive/collections/{file_name}")
     time.sleep(60)
     while get_cdx() != cdx:
         cdx = get_cdx()
@@ -202,8 +204,8 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
         run_browsertrix(to_patch, f"PATCH{file_name}")
     else:
         print("Crawl complete.")
-        print(f"Crawl {file_name} had {len(manual_patch)} 429 errors.")
-        print("Patch these manually in Conifer:")
+        print(f"Crawl {file_name} had {len(manual_patch)} 429 errors (below).")
+        print("Patch them manually in Conifer:")
         print(manual_patch)
 
     #return f"{home}/browsertrix/webarchive/collections/{file_name}"
