@@ -65,3 +65,10 @@ https://c19pub.azureedge.net/assets/modals/cardMetadata/deaths/cardDeaths28DaysT
 https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j85&tid=UA-161400643-2&cid=1856641749.1597051833&jid=1023307968&gjid=1484237354&_gid=1685632546.1598969230&_u=CACAAUABAAAAAC~&z=1190559044
 https://c19pub.azureedge.net/assets/modals/cardMetadata/deaths/cardDeaths28DaysAndRatesByArea.md
 https://stats.g.doubleclick.net/j/collect?t=dc&aip=1&_r=3&v=1&_v=j85&tid=UA-161400643-2&cid=1856641749.1597051833&jid=940534633&gjid=1304235020&_gid=1685632546.1598969230&_u=CACAAUABAAAAAC~&z=428013784
+https://coronavirus.data.gov.uk/
+https://coronavirus.data.gov.uk/testing
+https://coronavirus.data.gov.uk/cases
+https://coronavirus.data.gov.uk/healthcare
+https://coronavirus.data.gov.uk/deaths
+https://coronavirus.data.gov.uk/about-data
+https://coronavirus.data.gov.uk/developers-guide
