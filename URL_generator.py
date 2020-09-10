@@ -122,6 +122,25 @@ def get_all_urls():
 
 ####### 5. Function to write all generated URLs to txt file #######
 
+def get_cdx():
+    with open(f"{crawl_loc}/indexes/autoindex.cdxj", "r") as cdx:
+        cdx = cdx.read()
+    return cdx
+
+def check_errors(cdx):
+    cdx = cdx.split("\n")
+
+    while "" in cdx:
+        cdx.remove("")
+
+    cdx = [x.split(" ")[2].split("\",\"") for x in cdx]
+
+    to_patch = [[x[2], x[0]] for x in cdx if "403" in x[2]]
+    manual_patch = [[x[2], x[0]] for x in cdx if "429" in x[2]]
+
+    return [to_patch, manual_patch]
+
+
 def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1 Takes two args, list of URLs and file name. Defualt is "{date}_covid_dashboard_urls"
     yaml_template = f"""crawls:
   - name: {file_name}
@@ -162,12 +181,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     os.system(f"sudo browsertrix crawl create {file_name}.yaml")
 
-    print(f"When complete, warcs will be located at:\n{home}/browsertrix/webarchive/collections/{file_name}/archive")
-
-    def get_cdx():
-        with open(f"{home}/browsertrix/webarchive/collections/{file_name}/indexes/autoindex.cdxj", "r") as cdx:
-            cdx = cdx.read()
-        return cdx
+    print("You will be alerted when the crawl is complete.\nTo check crawl's status enter 'browsertrix crawl list' into the terminal" )
 
     cdx = get_cdx()
     time.sleep(60)
@@ -175,17 +189,33 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
         cdx = get_cdx()
         time.sleep(60)
 
+    print("Crawl finished")
 
+    errors = check_errors(cdx)
+    to_patch = errors[0]
+    manual_patch = "\n".join(errors[1])
 
+    print(f"\nCrawl {file_name} has {len(to_patch)} 403 errors.")
 
+    to_patch = [x[1].split("\":\"")[1] for x in to_patch]
 
+    answer = input("Would you like to patch these? [Y/n]")
+    if answer.lower == "y":
+        run_browsertrix(to_patch, f"PATCH{file_name}")
+    else:
+        print("Crawl complete.")
+        print(f"Crawl {file_name} had {len(manual_patch)} 429 errors.")
+        print("Patch these manually in Conifer:")
+        print(manual_patch)
 
+    #return f"{home}/browsertrix/webarchive/collections/{file_name}"
 
 
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
 run_browsertrix(all_urls)
+
 #
 #
 # ##### NEXT STEPS
