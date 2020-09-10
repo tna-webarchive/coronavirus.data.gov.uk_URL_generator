@@ -205,7 +205,8 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     errors = check_errors(cdx)
     to_patch = errors[0]
-    manual_patch = "\n".join(errors[1])
+    manual_patch = [x[1].split("\":\"")[1] for x in erorrs[1]]
+    manual_patch = "\n".join(manual_patch)
 
     print(f"\nCrawl {file_name} has {len(to_patch)} 403 errors.")
 
