@@ -3,7 +3,7 @@
 from requests import get
 from json import dumps
 from datetime import datetime
-import os
+import os, time
 
 apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
 initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; cd coronavirus.data.gov.uk_URL_generator"
@@ -142,22 +142,44 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     cache: always"""
 
     global home
+    timest = file_name.split("_")[0]
     CVDB_folder = home + "/covid_dashboard"
     if os.path.isdir(CVDB_folder) == False:
         os.mkdir(CVDB_folder)
     os.chdir(CVDB_folder)
+    os.mkdir(timest)
+
     domains = list(set(["domain: " + x.split("/")[2] for x in all_urls]))
     domains = "\n      - ".join(domains)
     urls = "\n      - ".join(all_urls)
     yaml = yaml_template.replace("{DOMAINS}", domains)
     yaml = yaml.replace("{URLS}", urls)
 
-    with open(f"{file_name}.yaml", "w") as dest:
+    with open(f"{timest}/{file_name}.yaml", "w") as dest:
         dest.write(yaml)
+    with open(f"{timest}/timestamp.txt", "w") as dest:
+        dest.write(timest)
 
     os.system(f"sudo browsertrix crawl create {file_name}.yaml")
 
-    print(f"When complete, warc will be located at:\n{home}/browsertrix/webarchive/collections/{file_name}")
+    print(f"When complete, warcs will be located at:\n{home}/browsertrix/webarchive/collections/{file_name}/archive")
+
+    def get_cdx():
+        with open(f"{home}/browsertrix/webarchive/collections/{file_name}/indexes/autoindex.cdxj", "r") as cdx:
+            cdx = cdx.read()
+        return cdx
+
+    cdx = get_cdx()
+    time.sleep(60)
+    while get_cdx() != cdx:
+        cdx = get_cdx()
+        time.sleep(60)
+
+
+
+
+
+
 
 
 # ###### 6. Run Program #####
