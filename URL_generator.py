@@ -142,7 +142,7 @@ def check():
     while "" in check:
         check.remove("")
     check = " ".join(check)
-    check = check.split(" custom ")
+    check = check.split(f" {crawl_type} ")
     status = check[0].split(" ")[-1]
     check = check[1].split(" ")
     total = int(check[4])
@@ -195,6 +195,8 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     os.system(f"sudo browsertrix crawl create {timest}/{file_name}.yaml")
 
+    time.sleep(10)
+
     while not check():
         time.sleep(60)
 
@@ -204,12 +206,11 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
         cdx = cdx.read()
 
     errors = check_errors(cdx)
-    to_patch = errors[0]
+
     manual_patch = [x[1].split("\":\"")[1] for x in errors[1]]
+    to_patch = [x[1].split("\":\"")[1] for x in errors[0]]
 
     print(f"\nCrawl {file_name} has {len(to_patch)} 403 errors.")
-
-    to_patch = [x[1].split("\":\"")[1] for x in to_patch]
 
     answer = None
     while answer not in ["Y","N","y","n"]:
@@ -230,7 +231,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-run_browsertrix(all_urls[:100])
+run_browsertrix(all_urls)
 
 #
 #
