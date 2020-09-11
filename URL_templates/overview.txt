@@ -47,3 +47,7 @@ https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview;areaName={
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview;areaName={name}&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22cumDeaths28DaysByPublishDate%22:%22cumDeaths28DaysByPublishDate%22,%22cumDeaths28DaysByPublishDateRate%22:%22cumDeaths28DaysByPublishDateRate%22%7D&format=
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview;areaName={name}&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22plannedCapacityByPublishDate%22:%22plannedCapacityByPublishDate%22,%22newTestsByPublishDate%22:%22newTestsByPublishDate%22,%22cumTestsByPublishDate%22:%22cumTestsByPublishDate%22%7D&format=
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22hospitalCases%22:%22hospitalCases%22%7D&format=
+https://coronavirus.data.gov.uk/testing?areaType=overview&areaName={name}
+https://coronavirus.data.gov.uk/deaths?areaType=overview&areaName={name}
+https://coronavirus.data.gov.uk/cases?areaType=overview&areaName={name}
+https://coronavirus.data.gov.uk/healthcare?areaType=overview&areaName={name}
