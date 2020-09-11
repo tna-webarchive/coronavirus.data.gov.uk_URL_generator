@@ -211,7 +211,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     to_patch = [x[1].split("\":\"")[1] for x in to_patch]
 
-    answer = None
+    answer = ""
     while answer.lower not in ["y", "n"]:
         answer = input("Would you like to patch these? [Y/n]")
         if answer.lower == "y":
