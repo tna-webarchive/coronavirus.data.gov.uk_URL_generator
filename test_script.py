@@ -131,7 +131,7 @@ def check_errors(cdx):
 
     cdx = [x.split(" ")[2].split("\",\"") for x in cdx]
 
-    to_patch = [[x[2], x[0]] for x in cdx if "403" in x[2]]
+    to_patch = [[x[2], x[0]] for x in cdx if "307" in x[2]] # should be 403 - 307 for testing purposes
     manual_patch = [[x[2], x[0]] for x in cdx if "429" in x[2]]
 
     return [to_patch, manual_patch]
@@ -215,7 +215,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     to_patch = [x[1].split("\":\"")[1] for x in errors[0]]
 
-    if patch > 0:
+    if patch == 0:
         manual_patch = [x[1].split("\":\"")[1] for x in errors[1]]
 
     print(f"\nCrawl {file_name} has {len(to_patch)} 403 errors.")
