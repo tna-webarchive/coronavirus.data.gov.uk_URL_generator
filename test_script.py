@@ -17,7 +17,7 @@ home = os.path.expanduser("~")
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
 today = datetime.today().strftime('%Y%m%d%H%M%S')
 crawl_type = "custom"
-path = 0
+patch = 0
 
 ##### 3. Function to gather all area names and catergorise by area type ######
 
