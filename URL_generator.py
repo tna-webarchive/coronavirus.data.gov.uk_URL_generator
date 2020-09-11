@@ -149,7 +149,7 @@ def check():
     to_crawl = total - int(check[2])
     ratio = int((to_crawl/total)*40)
     white = ratio*"□"
-    black = (40-ratio)*"■"
+    black = (40-ratio)*" "
     print(f"Crawling... {white}{black} {to_crawl}/{total} URLs crawled", flush=True, end="\r")
     if status == "done":
         return True
@@ -230,7 +230,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-run_browsertrix(all_urls[:250])
+run_browsertrix(all_urls)
 
 #
 #
