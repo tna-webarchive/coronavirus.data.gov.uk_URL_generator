@@ -202,8 +202,12 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     print("\nCrawl finished")
 
-    with open(f"{home}/browsertrix/webarchive/collections/{file_name}/indexes/autoindex.cdxj", "r") as cdx:
-        cdx = cdx.read()
+    try:
+        with open(f"{home}/browsertrix/webarchive/collections/{file_name}/indexes/autoindex.cdxj", "r") as cdx:
+            cdx = cdx.read()
+    except:
+        cdx = ""
+
 
     errors = check_errors(cdx)
 
