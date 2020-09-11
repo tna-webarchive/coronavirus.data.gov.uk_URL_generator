@@ -149,8 +149,8 @@ def check():
     to_crawl = total - int(check[2])
     ratio = int((to_crawl/total)*40)
     white = ratio*"■"
-    black = (40-ratio)*"□"
-    print(f"Crawling... {white}{black} {to_crawl}/{total} URLs crawled", flush=True, end="\r")
+    black = (40-ratio)*" "
+    print(f"Crawling... {white}{black}| {to_crawl}/{total} URLs crawled", flush=True, end="\r")
     if status == "done":
         return True
     else:
@@ -196,7 +196,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     os.system(f"sudo browsertrix crawl create {timest}/{file_name}.yaml")
 
     while not check():
-        time.sleep(120)
+        time.sleep(60)
 
     print("\nCrawl finished")
 
@@ -211,17 +211,18 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 
     to_patch = [x[1].split("\":\"")[1] for x in to_patch]
 
-    answer = ""
-    while answer.lower not in ["y", "n"]:
+    answer = None
+    while answer not in ["Y","N","y","n"]:
         answer = input("Would you like to patch these? [Y/n]")
-        if answer.lower == "y":
+        if answer in ["Y","y"]:
             run_browsertrix(to_patch, f"PATCH{file_name}")
-        elif answer.lower == "n":
+        elif answer in ["N","n"]:
             print("Crawl complete.")
             print(f"\nCrawl {file_name} had {len(manual_patch)} 429 errors (below).")
             manual_patch = "\n".join(manual_patch)
             print("Patch them manually in Conifer:")
             print(manual_patch)
+            os.system("browsertrix crawl remove-all")
 
     #return f"{home}/browsertrix/webarchive/collections/{file_name}"
 
@@ -229,7 +230,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-run_browsertrix(all_urls[:500])
+run_browsertrix(all_urls)
 
 #
 #
