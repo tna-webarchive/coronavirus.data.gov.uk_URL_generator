@@ -183,7 +183,10 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
         os.mkdir(CVDB_folder)
     os.chdir(CVDB_folder)
     os.mkdir(timest)
-
+    
+    while "" in all_urls:
+        all_urls.remove("")
+    
     domains = list(set(["domain: " + x.split("/")[2] for x in all_urls]))
     domains = "\n      - ".join(domains)
     urls = "\n      - ".join(all_urls)
