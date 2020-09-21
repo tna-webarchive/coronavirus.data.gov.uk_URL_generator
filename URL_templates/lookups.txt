@@ -7,3 +7,7 @@ https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation%257CareaTy
 https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=region&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
 https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation%257CareaType=region%257CareaType=utla%257CareaType=ltla&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
 https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation%7CareaType=region%7CareaType=utla%7CareaType=ltla&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation%7CareaType=region&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nhsNation%7CareaType=nhsRegion&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
