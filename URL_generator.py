@@ -87,9 +87,9 @@ def get_all_urls():
 
     newrls = [url.replace("%20", "%2520") for url in all_urls  if "%20" in url]    #4.9 Creates list of urls with %2520 in place of %20 to fix replayweb.page issue.
 
-    staging_urls = [url.replace("https://api.coronavirus.data.gov.uk", "https://api.coronavirus-staging.data.gov.uk") for url in all_urls  if "https://api.coronavirus.data.gov.uk" in url]
+    #staging_urls = [url.replace("https://api.coronavirus.data.gov.uk", "https://api.coronavirus-staging.data.gov.uk") for url in all_urls  if "https://api.coronavirus.data.gov.uk" in url]
 
-    all_urls = all_urls + newrls + staging_urls
+    all_urls = all_urls + newrls #+ staging_urls
 
     to_reorder = [url for url in all_urls if ((";" in url and url.count(";") == 1) and "overview" in url)]
 
