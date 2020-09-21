@@ -123,6 +123,7 @@ def get_all_urls():
 ####### 5. Function to write all generated URLs to txt file #######
 
 def check_errors(cdx):
+    reruns = ['"status":"4']
     cdx = cdx.split("\n")
 
     while "" in cdx:
@@ -130,7 +131,7 @@ def check_errors(cdx):
 
     cdx = [x.split(" ")[2].split("\",\"") for x in cdx]
 
-    to_patch = [[x[2], x[0]] for x in cdx if "403" in x[2]]
+    to_patch = [[x[2], x[0]] for x in cdx if x[2].split(":\"")[0] in ["4", "5"]]
     manual_patch = [[x[2], x[0]] for x in cdx if "429" in x[2]]
 
     return [to_patch, manual_patch]
