@@ -82,3 +82,6 @@ https://coronavirus.data.gov.uk/testing?areaType=nation&areaName={name}
 https://coronavirus.data.gov.uk/cases?areaType=nation&areaName={name}
 https://coronavirus.data.gov.uk/deaths?areaType=nation&areaName={name}
 https://coronavirus.data.gov.uk/healthcare?areaType=nation&areaName={name}
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&latestBy=newPillarOneTwoTestsByPublishDate&structure=%7B%22date%22:%22date%22,%22value%22:%22newPillarOneTwoTestsByPublishDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&latestBy=cumPillarOneTwoTestsByPublishDate&structure=%7B%22date%22:%22date%22,%22value%22:%22cumPillarOneTwoTestsByPublishDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&latestBy=capacityPillarOneTwo&structure=%7B%22date%22:%22date%22,%22value%22:%22capacityPillarOneTwo%22%7D

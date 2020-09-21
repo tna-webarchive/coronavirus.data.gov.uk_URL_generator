@@ -114,3 +114,4 @@ https://coronavirus.data.gov.uk/static/js/8.8f0d9349.chunk.js
 https://coronavirus.data.gov.uk/static/js/9.10632f0a.chunk.js
 https://coronavirus.data.gov.uk/static/js/main.3f2affce.chunk.js
 https://www.arcgis.com/apps/webappviewer/index.html?id=47574f7a6e454dc6a42c5f6912ed7076
+https://c19pub.azureedge.net/assets/modals/cumPillarOneTwoTestsByPublishDate.md
