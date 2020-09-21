@@ -123,18 +123,22 @@ def get_all_urls():
 ####### 5. Function to write all generated URLs to txt file #######
 
 def check_errors(cdx):
-    reruns = ['"status":"4']
     cdx = cdx.split("\n")
-
     while "" in cdx:
         cdx.remove("")
-
     cdx = [x.split(" ")[2].split("\",\"") for x in cdx]
+    four03s, four04s, four29s, others = [], [], [], []
+    for x in cdx:
+        if x[2] == 'status":"403':
+            four03s.append([x[2], x[0]])
+        elif x[2] == 'status":"404':
+            four04s.append([x[2], x[0]])
+        elif x[2] == 'status":"429':
+            four29s.append([x[2], x[0]])
+        elif "status" in x[2] and x[2].split('":"')[1][0] in ["4", "5"]:
+            others.append([x[2], x[0]])
 
-    to_patch = [[x[2], x[0]] for x in cdx if x[2].split(":\"")[0] in ["4", "5"]]
-    manual_patch = [[x[2], x[0]] for x in cdx if "429" in x[2]]
-
-    return [to_patch, manual_patch]
+    return [four03s, four04s, others, four29s]
 
 def check():
     check = subprocess.run("browsertrix crawl list", shell =True, stdout=subprocess.PIPE).stdout.decode("utf-8")
@@ -212,13 +216,18 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     except:
         cdx = ""
 
-
     errors = check_errors(cdx)
 
-    manual_patch = [x[1].split("\":\"")[1] for x in errors[1]]
-    to_patch = [x[1].split("\":\"")[1] for x in errors[0]]
+    count403 = len(errors[0])
+    count404 = len(errors[1])
+    countothers = len(errors[2])
 
-    print(f"\nCrawl {file_name} has {len(to_patch)} 403 errors.")
+    to_patch = errors[0]+errors[1]+errors[2]
+    to_patch = [x[1].split("\":\"")[1] for x in to_patch]
+
+    manual_patch = [x[1].split("\":\"")[1] for x in errors[3]]
+
+    print(f"\nCrawl {file_name} has {count403} 403 errors, {count404} 404 errors and {countothers} other potentially patchable errors.")
 
     answer = None
     while answer not in ["Y","N","y","n"]:
