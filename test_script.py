@@ -16,8 +16,7 @@ home = os.path.expanduser("~")
 
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
 today = datetime.today().strftime('%d.%m.%Y-%H:%M:%S')
-crawl_type = "custom"
-patch = 0
+crawl_type, patch, folder = "custom", 0, None
 
 ##### 3. Function to gather all area names and catergorise by area type ######
 
@@ -182,7 +181,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     browser: chrome:73
     cache: always"""
 
-    global home, patch
+    global home, patch, folder
     timest = file_name.split("_")[0]
     CVDB_folder = home + "/covid_dashboard/"
     if os.path.isdir(CVDB_folder) == False:
