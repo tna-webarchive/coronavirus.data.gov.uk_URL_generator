@@ -232,15 +232,15 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
         manual_patch = [x[1].split("\":\"")[1] for x in errors[3]]
 
     print(
-        f"\nCrawl {file_name} has {count403} 403 errors, {count404} 404 errors and {countothers} other potentially patchable errors.")
+        f"\nCrawl {file_name} has {count403} 403 errors, {count404} 404 errors and {countothers} other potentially patchable errors.\n")
 
     answer = None
     while answer not in ["Y","N","y","n"]:
         answer = input("Would you like to patch these? [Y/n]")
         if answer in ["Y","y"]:
+            patch += 1
             run_browsertrix(to_patch, f"PATCH{file_name}")
             os.system(f"sudo mv {collection_loc}/{file_name} {folder}")
-            patch += 1
         elif answer in ["N","n"]:
             print("Crawl complete.")
             print(f"\nCrawl {file_name} had {len(manual_patch)} 429 errors (below).")
@@ -248,7 +248,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
             print("Patch them manually in Conifer:")
             print(manual_patch)
             os.system("browsertrix crawl remove-all")
-            os.system(f"sudo mv {collection_loc}/{file_name} {folder}")
+            os.system(f"sudo mv {collection_loc} {folder}")
 
     return folder
 
@@ -256,7 +256,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-folder = run_browsertrix(all_urls)
+folder = run_browsertrix(all_urls[400])
 print(f"Crawl complete. All WARCs located in {folder}")
 
 #
