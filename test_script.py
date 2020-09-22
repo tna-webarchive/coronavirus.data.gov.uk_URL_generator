@@ -15,7 +15,7 @@ home = os.path.expanduser("~")
 ######### 2. Define global variables ########
 
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]  #2.1 Types defined in Developer's guide https://coronavirus.data.gov.uk/developers-guide
-today = datetime.today().strftime('%Y%m%d%H%M%S')
+today = datetime.today().strftime('%d-%m-%Y.%H:%M:%S')
 crawl_type = "custom"
 patch = 0
 
