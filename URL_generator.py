@@ -141,7 +141,7 @@ def check_errors(cdx):
     return [four03s, four04s, others, four29s]
 
 def check():
-    check = subprocess.run("browsertrix crawl list", shell =True, stdout=subprocess.PIPE).stdout.decode("utf-8")
+    check = subprocess.run("browsertrix crawl list", shell=True, stdout=subprocess.PIPE).stdout.decode("utf-8")
     check = check.split("\n")[1]
     check = check.split(" ")
     while "" in check:

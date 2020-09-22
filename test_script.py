@@ -256,7 +256,7 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-folder = run_browsertrix(all_urls[:1500])
+folder = run_browsertrix(all_urls)
 print(f"Crawl complete. All WARCs located in {folder}")
 
 #
