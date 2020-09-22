@@ -181,15 +181,17 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
     browser: chrome:73
     cache: always"""
 
-    global home, patch, folder
-    timest = file_name.split("_")[0]
+    global home, patch, folder, timest
+
     CVDB_folder = home + "/covid_dashboard/"
     if os.path.isdir(CVDB_folder) == False:
         os.mkdir(CVDB_folder)
     os.chdir(CVDB_folder)
     if patch == 0:
-        os.mkdir(timest)
+        timest = file_name.split("_")[0]
         folder = f"{CVDB_folder}{timest}/"
+
+    os.mkdir(timest)
 
     while "" in all_urls:
         all_urls.remove("")
