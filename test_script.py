@@ -88,9 +88,9 @@ def get_all_urls():
 
     newrls = [url.replace("%20", "%2520") for url in all_urls  if "%20" in url]    #4.9 Creates list of urls with %2520 in place of %20 to fix replayweb.page issue.
 
-    staging_urls = [url.replace("https://api.coronavirus.data.gov.uk", "https://api.coronavirus-staging.data.gov.uk") for url in all_urls  if "https://api.coronavirus.data.gov.uk" in url]
+    #staging_urls = [url.replace("https://api.coronavirus.data.gov.uk", "https://api.coronavirus-staging.data.gov.uk") for url in all_urls  if "https://api.coronavirus.data.gov.uk" in url]
 
-    all_urls = all_urls + newrls + staging_urls
+    all_urls = all_urls + newrls #+ staging_urls
 
     to_reorder = [url for url in all_urls if ((";" in url and url.count(";") == 1) and "overview" in url)]
 
@@ -247,20 +247,20 @@ def run_browsertrix(all_urls, file_name=f"{today}_covid_dashboard"):        #5.1
             os.system("browsertrix crawl remove-all")
             os.system(f"sudo mv {collection_loc}/{file_name} {folder}")
 
-    #return f"{home}/browsertrix/webarchive/collections/{file_name}"
+    return folder
 
 
 # ###### 6. Run Program #####
 
 all_urls = get_all_urls()
-run_browsertrix(all_urls[:400])
+folder = run_browsertrix(all_urls[:2000])
+print(f"Crawl complete. All WARCs located in {folder}")
 
 #
 #
 # ##### NEXT STEPS
 # ##### YAML as txt file to edit config easily.
 ####### place patch warcs in original collection
-# ##### Run Browsertrix job from cmd line ( os.system() )
 # ##### Figure out correct input for UX
 # ##### combine the warcs
 # ##### rerun 429, 307, etc.
