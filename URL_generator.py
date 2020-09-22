@@ -6,7 +6,7 @@ from datetime import datetime
 import os, time, subprocess
 
 apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
-initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; cd coronavirus.data.gov.uk_URL_generator"
+initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
 os.system(apt_updates + "; " + initialise)
 
 home = os.path.expanduser("~")
