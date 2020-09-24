@@ -137,6 +137,7 @@ def patch(statuses):
                         try:
                             to_add += [int(code.strip()) for code in split_others if
                                        int(code.strip()) in range(100, 600)]
+                            valid = True
                         except:
                             print(f"\nThere is an issue with your input: {others}\nPlease renter.")
                             valid = False
