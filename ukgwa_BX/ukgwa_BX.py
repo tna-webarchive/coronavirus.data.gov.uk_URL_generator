@@ -1,3 +1,13 @@
+def run_BX(yaml_loc, file_name):
+    import os, subprocess
+    os.system(f"sudo browsertrix crawl create {yaml_loc}")
+    check = subprocess.run(f"sudo browsertrix crawl create {yaml_loc}", shell=True,
+                           stdout=subprocess.PIPE).stdout.decode("utf-8")
+    check = check.split("\n")[1]
+    crawl_id = check.split(": ")[1]
+    return crawl_id
+
+
 def create_yaml(urls, file_name, folder):
     while "" in urls:
         urls.remove("")
