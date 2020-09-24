@@ -69,6 +69,7 @@ def check_crawl(crawl_id):
     return response
 #####MAKE SURE IT DOESNT BREAK IF NOT CRAWLS######
 
+
 def check_errors(cdx):
     with open(cdx, "r") as cdx:
         cdx = cdx.read()
