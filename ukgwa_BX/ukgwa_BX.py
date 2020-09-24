@@ -137,13 +137,14 @@ def patch(statuses):
                         try:
                             to_add += [int(code.strip()) for code in split_others if
                                        int(code.strip()) in range(100, 600)]
-                            patch_urls = []
-                            for code in to_add:
-                                if statuses[code] != None:
-                                    patch_urls += (statuses[code])
-                            return patch_urls
                         except:
                             print(f"\nThere is an issue with your input: {others}\nPlease renter.")
                             valid = False
+            patch_urls = []
+            for code in to_add:
+                if statuses[code] != None:
+                    patch_urls += (statuses[code])
+            return patch_urls
+
         elif patch == "n":
             return False
