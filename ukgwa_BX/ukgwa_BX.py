@@ -10,8 +10,9 @@ def run_BX(yaml_loc):
 
 
 def create_yaml(urls, file_name, folder):
-    while "" in urls or None in urls:
+    while "" in urls:
         urls.remove("")
+    while None in urls
         urls.remove(None)
 
     yaml_template = f"""crawls:
