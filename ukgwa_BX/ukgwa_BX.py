@@ -1,16 +1,18 @@
-def run_BX(yaml_loc, file_name):
+def run_BX(yaml_loc):
     import os, subprocess
     os.system(f"sudo browsertrix crawl create {yaml_loc}")
     check = subprocess.run(f"sudo browsertrix crawl create {yaml_loc}", shell=True,
                            stdout=subprocess.PIPE).stdout.decode("utf-8")
     check = check.split("\n")[1]
     crawl_id = check.split(": ")[1]
+
     return crawl_id
 
 
 def create_yaml(urls, file_name, folder):
-    while "" in urls:
+    while "" in urls or None in urls:
         urls.remove("")
+        urls.remove(None)
 
     yaml_template = f"""crawls:
   - name: {file_name}
@@ -18,7 +20,7 @@ def create_yaml(urls, file_name, folder):
     crawl_depth: 2
     num_browsers: 1
     num_tabs: 2
-    coll: {file_name}
+    coll: {folder.split("/")[-2]}
     mode: record
 
     scopes:
@@ -103,3 +105,36 @@ def check_errors(cdx):
             statuses[int(line["status"])] = [line["url"]]
 
     return statuses
+
+
+def patch(statuses):
+    print("\nHere are the HTTP responses for this crawl and their frequency:\n")
+
+    for x in [[code, len(statuses[code])] for code in statuses if statuses[code]]:
+        print(x)
+
+    while patch not in ["y", "n"]:
+        patch = input("\nWould you like to launch a patch? [Y/n]").lower()
+        if patch == "y":
+            to_add = [403, 404]
+            while add not in ["y", "n"]:
+                add = input(
+                    "\nPatch will automatically rerun any 403 and 404 errors. would you like to add others? [Y/n]").lower()
+                if add == "y":
+                    valid = False
+                    while not valid:
+                        others = input("\nEnter other responses to patch separated by a comma e.g. 429,503,504")
+                        split_others = others.split(",")
+                        try:
+                            to_add += [int(code.strip()) for code in split_others if
+                                       int(code.strip()) in range(100, 600)]
+                            patch_urls = []
+                            for code in to_add:
+                                if statuses[code] != None:
+                                    patch_urls += (statuses[code])
+                            return patch_urls
+                        except:
+                            print(f"\nThere is an issue with your input: {others}\nPlease renter.")
+                            valid = False
+        elif patch == "n":
+            return False
