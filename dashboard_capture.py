@@ -105,8 +105,17 @@ def get_all_urls(areaNames):
 def run_crawl(urls, file_name, collection_loc):
     yaml = ukgwa_BX.create_yaml(urls, file_name, crawl_loc)
     crawl_id = ukgwa_BX.run_BX(yaml)
-    while ukgwa_BX.check_crawl(crawl_id)["STATUS"] != "done":
+    response = ukgwa_BX.check_crawl(crawl_id)
+    while response["STATUS"] != "done":
+        response = ukgwa_BX.check_crawl(crawl_id)
+        total = response["SEEN"]
+        crawled = total - response["TO CRAWL"]
+        ratio = int((crawled / total) * 40)
+        done = ratio * "■"
+        to_do = (40 - ratio) * " "
+        print(f"Crawling... {done}{to_do}| {crawled}/{total} URLs crawled", flush=True, end="\r")
         time.sleep(60)
+
     print("\nCrawl finished")
 
     status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj")
