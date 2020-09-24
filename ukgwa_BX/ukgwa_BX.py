@@ -2,6 +2,7 @@ def run_BX(yaml_loc):
     import subprocess
     check = subprocess.run(f"sudo browsertrix crawl create {yaml_loc}", shell=True,
                            stdout=subprocess.PIPE).stdout.decode("utf-8")
+    print(check)
     check = check.split("\n")[1]
     crawl_id = check.split(": ")[1]
 
