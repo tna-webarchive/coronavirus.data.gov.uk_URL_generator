@@ -1,9 +1,8 @@
 import subprocess, os
 
 def run_BX(yaml_loc):
-    apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
     initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
-    os.system(apt_updates + "; " + initialise)
+    os.system(initialise)
 
     check = subprocess.run(f"sudo browsertrix crawl create {yaml_loc}", shell=True,
                            stdout=subprocess.PIPE).stdout.decode("utf-8")
@@ -128,11 +127,11 @@ def patch(statuses):
             add=None
             while add not in ["y", "n"]:
                 add = input(
-                    "\nPatch will automatically rerun any 403 and 404 errors. would you like to add others? [Y/n]").lower()
+                    "\nPatch will automatically rerun any 403 and 404 errors.\nWould you like to add others? [Y/n]").lower()
                 if add == "y":
                     valid = False
                     while not valid:
-                        others = input("\nEnter other responses to patch separated by a comma e.g. 429,503,504")
+                        others = input("\nEnter other responses to patch separated by a comma e.g. 429,503,504\n>")
                         split_others = others.split(",")
                         try:
                             to_add += [int(code.strip()) for code in split_others if

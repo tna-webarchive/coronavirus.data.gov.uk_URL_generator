@@ -124,7 +124,10 @@ def run_crawl(urls, file_name, collection_loc):
         run_crawl(patch_urls, "PATCH"+crawl_name, collection_loc)
     else:
         os.system(f"sudo mv {collection_loc} {crawl_loc}")
+        print(f"Crawl finished. Crawl files located in:\n{crawl_loc}{crawl_name}/")
 
+apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
+os.system(apt_updates)
 
 home = os.path.expanduser("~") + "/"
 os.chdir(home)
@@ -153,6 +156,10 @@ with open(f"current_areaNames_{today[:8]}.csv", "r") as areaNames:
     reader = csv.reader(areaNames)
     areaNames = list(reader)
 
-all_urls = get_all_urls(areaNames)[:50]
+all_urls = get_all_urls(areaNames)[:10]
 
 run_crawl(all_urls, crawl_name, collection_loc)
+
+
+
+### Make patch show changes
