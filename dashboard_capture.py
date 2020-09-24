@@ -31,7 +31,7 @@ def get_all_urls(areaNames):
     all_urls = []
 
     for i, type in enumerate(types):
-        with open(f"URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
+        with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
             urls = urls.read()
             urls = urls.split("\n")                             #4.3 Creates list of URL templates
         for url in urls:
@@ -116,7 +116,7 @@ def run_crawl(urls, file_name, collection_loc):
     else:
         os.system(f"sudo mv {collection_loc} {crawl_loc}")
 
-home = os.path.expanduser("~")
+home = os.path.expanduser("~") + "/"
 os.chdir(home)
 today = datetime.today().strftime('%Y%m%d%H%M%S')
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
@@ -124,8 +124,8 @@ types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 
 
 crawl_name = input("What is the name of this crawl?") + today
-collection_loc = f"{home}/browsertrix/webarchive/collections/{crawl_name}/"
-CVDB_folder = home + "/covid_dashboard/"
+collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
+CVDB_folder = home + "covid_dashboard/"
 crawl_loc = CVDB_folder + crawl_name
 
 if os.path.isdir(CVDB_folder) == False:
