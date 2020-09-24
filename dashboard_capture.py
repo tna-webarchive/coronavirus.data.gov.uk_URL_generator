@@ -139,7 +139,9 @@ crawl_loc = CVDB_folder + crawl_name + "/"
 
 if os.path.isdir(CVDB_folder) == False:
     os.mkdir(CVDB_folder)
+os.mkdir(crawl_loc)
 os.chdir(CVDB_folder)
+
 
 areaName_files = [x for x in os.listdir() if (x.startswith("current_areaNames")) and (x.endswith(".csv"))]
 
