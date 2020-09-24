@@ -59,7 +59,7 @@ def get_all_urls(areaNames):
             else:
                 all_urls.append(url)                            #4.6
 
-    with open("URL_templates/extras.txt", "r") as extras:
+    with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/extras.txt", "r") as extras:
         extras = extras.read()
         extras = extras.split("\n")                         #4.7 Creats list of extra URls from extras.txt
 
@@ -88,7 +88,7 @@ def get_all_urls(areaNames):
 
     all_urls = list(set(all_urls))                #Randomises list
 
-    with open("URL_templates/lookups.txt", "r") as lookups:
+    with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/lookups.txt", "r") as lookups:
         lookups = lookups.read()
         lookups = lookups.split("\n")               # 4.7 Creates list of lookup URls from lookups.txt
 
