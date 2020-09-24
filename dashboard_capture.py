@@ -108,8 +108,8 @@ def run_crawl(urls, file_name, collection_loc):
     response = ukgwa_BX.check_crawl(crawl_id)
     while response["STATUS"] != "done":
         response = ukgwa_BX.check_crawl(crawl_id)
-        total = response["SEEN"]
-        crawled = total - response["TO CRAWL"]
+        total = int(response["SEEN"])
+        crawled = total - int(response["TO CRAWL"])
         ratio = int((crawled / total) * 40)
         done = ratio * "■"
         to_do = (40 - ratio) * " "
@@ -132,7 +132,7 @@ types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 
 
 
-crawl_name = input("What is the name of this crawl?") + today
+crawl_name = input("What is the name of this crawl?") + "_" + today
 collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
 CVDB_folder = home + "covid_dashboard/"
 crawl_loc = CVDB_folder + crawl_name + "/"
@@ -145,12 +145,12 @@ os.chdir(CVDB_folder)
 
 areaName_files = [x for x in os.listdir() if (x.startswith("current_areaNames")) and (x.endswith(".csv"))]
 
-if f"current_areaNames_{today[:9]}.csv" not in areaName_files:
+if f"current_areaNames_{today[:8]}.csv" not in areaName_files:
     get_areaNames()
     for x in areaName_files:
         os.remove(x)
 
-with open(f"current_areaNames_{today[:9]}.csv", "r") as areaNames:
+with open(f"current_areaNames_{today[:8]}.csv", "r") as areaNames:
     reader = csv.reader(areaNames)
     areaNames = list(reader)
 
