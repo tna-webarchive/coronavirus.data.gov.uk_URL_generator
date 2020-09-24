@@ -15,6 +15,7 @@ def create_yaml(urls, file_name, folder):
     while None in urls:
         urls.remove(None)
 
+
     yaml_template = f"""crawls:
   - name: {file_name}
     crawl_type: custom
