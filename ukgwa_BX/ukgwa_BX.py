@@ -1,6 +1,6 @@
-def run_BX(yaml_loc):
-    import subprocess
+import subprocess, os
 
+def run_BX(yaml_loc):
     apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
     initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
     os.system(apt_updates + "; " + initialise)
@@ -69,7 +69,6 @@ When happy with the template, save it and hit return here in the terminal>""")
 
 
 def check_crawl(crawl_id):
-    import subprocess
     check = subprocess.run("browsertrix crawl list", shell=True, stdout=subprocess.PIPE).stdout.decode("utf-8")
     check = check.split("\n")
     while "" in check:
