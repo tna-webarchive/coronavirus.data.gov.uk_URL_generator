@@ -135,7 +135,7 @@ types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 crawl_name = input("What is the name of this crawl?") + today
 collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
 CVDB_folder = home + "covid_dashboard/"
-crawl_loc = CVDB_folder + crawl_name
+crawl_loc = CVDB_folder + crawl_name + "/"
 
 if os.path.isdir(CVDB_folder) == False:
     os.mkdir(CVDB_folder)
