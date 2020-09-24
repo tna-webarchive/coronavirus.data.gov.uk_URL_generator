@@ -125,16 +125,11 @@ def run_crawl(urls, file_name, collection_loc):
     else:
         os.system(f"sudo mv {collection_loc} {crawl_loc}")
 
-apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
-initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
-os.system(apt_updates + "; " + initialise)
 
 home = os.path.expanduser("~") + "/"
 os.chdir(home)
 today = datetime.today().strftime('%Y%m%d%H%M%S')
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
-
-
 
 crawl_name = input("What is the name of this crawl? ") + "_" + today
 collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
