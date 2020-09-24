@@ -162,4 +162,4 @@ run_crawl(all_urls, crawl_name, collection_loc)
 
 
 
-### Make patch show changes
+### Make patch show changes (write to .txt)
