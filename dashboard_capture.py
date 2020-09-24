@@ -132,7 +132,7 @@ types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 
 
 
-crawl_name = input("What is the name of this crawl?") + "_" + today
+crawl_name = input("What is the name of this crawl? ") + "_" + today
 collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
 CVDB_folder = home + "covid_dashboard/"
 crawl_loc = CVDB_folder + crawl_name + "/"
