@@ -46,6 +46,7 @@ Make your changes to the YAML template {folder}yaml_template.yaml
 (Please do not change 'name' or 'coll' fields)
 When happy with the template, save it and hit return here in the terminal>""")
 
+        print("YAML created, launching browsertrix...")
         with open(f"{folder}yaml_template.yaml", "r") as yaml_template:
             yaml_template = yaml_template.read()
 
