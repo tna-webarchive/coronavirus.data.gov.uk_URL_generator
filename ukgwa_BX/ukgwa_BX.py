@@ -142,7 +142,7 @@ def patch(statuses, crawl_loc):
     print("\nHere are the HTTP responses for this crawl and their frequency:\n")
 
     for x in result:
-        print(x)
+        print(result[x])
 
     patch=None
     while patch not in ["y", "n"]:
