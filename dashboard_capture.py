@@ -31,7 +31,7 @@ def get_all_urls(areaNames):
     all_urls = []
 
     for i, type in enumerate(types):
-        with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
+        with open(f"{ROOT}URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
             urls = urls.read()
             urls = urls.split("\n")                             #4.3 Creates list of URL templates
         for url in urls:
@@ -59,7 +59,7 @@ def get_all_urls(areaNames):
             else:
                 all_urls.append(url)                            #4.6
 
-    with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/extras.txt", "r") as extras:
+    with open(f"{ROOT}URL_templates/extras.txt", "r") as extras:
         extras = extras.read()
         extras = extras.split("\n")                         #4.7 Creats list of extra URls from extras.txt
 
@@ -87,7 +87,7 @@ def get_all_urls(areaNames):
 
     all_urls = list(set(all_urls))                #Randomises list
 
-    with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/lookups.txt", "r") as lookups:
+    with open(f"{ROOT}URL_templates/lookups.txt", "r") as lookups:
         lookups = lookups.read()
         lookups = lookups.split("\n")               # 4.7 Creates list of lookup URls from lookups.txt
 
@@ -122,6 +122,7 @@ def run_crawl(urls, file_name, collection_loc):
         print(f"Crawl finished. Crawl files located in:\n{crawl_loc}{crawl_name}/")
 
 
+ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
 home = os.path.expanduser("~") + "/"
 os.chdir(home)
 today = datetime.today().strftime('%Y%m%d%H%M%S')
