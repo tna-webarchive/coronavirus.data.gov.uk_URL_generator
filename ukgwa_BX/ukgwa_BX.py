@@ -1,8 +1,8 @@
 import subprocess, os
 
 def run_BX(yaml_loc):
-    initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
-    os.system(initialise)
+    # initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
+    # os.system(initialise)
 
     check = subprocess.run(f"sudo browsertrix crawl create {yaml_loc}", shell=True,
                            stdout=subprocess.PIPE).stdout.decode("utf-8")
