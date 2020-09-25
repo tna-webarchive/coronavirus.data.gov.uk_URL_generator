@@ -92,9 +92,13 @@ def check_crawl(crawl_id):
 
 
 def check_errors(cdx, urls):
-    with open(cdx, "r") as cdx:
-        cdx = cdx.read()
-        cdx = cdx.split("\n")
+    try:
+        with open(cdx, "r") as cdx:
+            cdx = cdx.read()
+            cdx = cdx.split("\n")
+    except:
+        print("It seems as though Browsertrix didn't produce a CDX for this crawl.")
+        return False
 
     while "" in cdx:
         cdx.remove("")
@@ -118,6 +122,9 @@ def check_errors(cdx, urls):
 
 
 def patch(statuses):
+    if type(statuses) != dict:
+        return False
+
     print("\nHere are the HTTP responses for this crawl and their frequency:\n")
 
     result = [[code, len(statuses[code])] for code in statuses if statuses[code]]           #compare with previous result if patch
