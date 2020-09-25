@@ -1,4 +1,4 @@
-import subprocess, os, csv
+import subprocess, os, json
 
 def run_BX(yaml_loc):
     # initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
@@ -125,9 +125,19 @@ def patch(statuses):
     if type(statuses) != dict:
         return False
 
-    print("\nHere are the HTTP responses for this crawl and their frequency:\n")
+    result = [{code: len(statuses[code])} for code in statuses if statuses[code]]           #compare with previous result if patch
 
-    result = [[code, len(statuses[code])] for code in statuses if statuses[code]]           #compare with previous result if patch
+    if "HTTP_responses.json" in os.listdir(crawl_loc):
+        with open(f"{crawl_loc}HTTP_responses.csv", "r") as prev:
+            prev = json.load(prev)
+        for status in prev.keys():
+            result[status] -= int(prev[status])
+
+
+    with open(f"{crawl_loc}HTTP_responses.json", "w") as dest:
+        json.dump(result, dest)
+
+    print("\nHere are the HTTP responses for this crawl and their frequency:\n")
 
     for x in result:
         print(x)
