@@ -5,7 +5,6 @@ from requests import get
 from json import dumps
 
 
-
 def get_areaNames():
     ENDPOINT = "https://api.coronavirus.data.gov.uk/v1/lookup?"       #3.1 lookup query url root
     areaNames = [[]] * len(types)
