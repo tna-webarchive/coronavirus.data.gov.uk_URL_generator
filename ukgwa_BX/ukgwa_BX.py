@@ -1,8 +1,5 @@
 import subprocess, os, json
 
-def crawl_name(crawl_name):
-    global crawl_name
-
 def run_BX(yaml_loc):
     # initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
     # os.system(initialise)
