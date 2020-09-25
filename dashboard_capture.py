@@ -118,7 +118,7 @@ def run_crawl(urls, file_name, collection_loc):
 
     print("\nCrawl finished")
 
-    status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj")
+    status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj", urls)
     patch_urls = ukgwa_BX.patch(status)
     if patch_urls:
         run_crawl(patch_urls, "PATCH"+crawl_name, collection_loc)

@@ -19,6 +19,9 @@ def create_yaml(urls, file_name, folder):
     while None in urls:
         urls.remove(None)
 
+    # with open(f"{folder}file_name_URLS.txt", "w") as dest:
+    #     url_text = "\n".join(urls)
+    #     dest.write(url_text)
 
     yaml_template = f"""crawls:
   - name: {file_name}
@@ -88,7 +91,7 @@ def check_crawl(crawl_id):
 #####MAKE SURE IT DOESNT BREAK IF NOT CRAWLS######
 
 
-def check_errors(cdx):
+def check_errors(cdx, urls):
     with open(cdx, "r") as cdx:
         cdx = cdx.read()
         cdx = cdx.split("\n")
@@ -103,12 +106,13 @@ def check_errors(cdx):
         statuses[x] = None
 
     for line in cdx:
-        if "status" not in line.keys():
-            continue
-        try:
-            statuses[int(line["status"])].append(line["url"])
-        except:
-            statuses[int(line["status"])] = [line["url"]]
+        if line["url"] in urls:
+            if "status" not in line.keys():
+                continue
+            try:
+                statuses[int(line["status"])].append(line["url"])
+            except:
+                statuses[int(line["status"])] = [line["url"]]
 
     return statuses
 
