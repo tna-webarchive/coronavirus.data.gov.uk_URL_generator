@@ -133,7 +133,7 @@ def patch(statuses, crawl_loc):
         with open(f"{crawl_loc}HTTP_responses.json", "r") as prev:
             prev = json.load(prev)
         for status in result.keys():
-            result[status] -= int(prev[status])
+            result[status] -= int(prev[str(status)])
 
 
     with open(f"{crawl_loc}HTTP_responses.json", "w") as dest:
@@ -142,7 +142,7 @@ def patch(statuses, crawl_loc):
     print("\nHere are the HTTP responses for this crawl and their frequency:\n")
 
     for x in result:
-        print(result[x])
+        print(x, ",", result[x])
 
     patch=None
     while patch not in ["y", "n"]:
