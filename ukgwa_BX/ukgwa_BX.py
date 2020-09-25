@@ -132,7 +132,7 @@ def patch(statuses, crawl_loc):
     if "HTTP_responses.json" in os.listdir(crawl_loc):
         with open(f"{crawl_loc}HTTP_responses.json", "r") as prev:
             prev = json.load(prev)
-        for status in prev.keys():
+        for status in result.keys():
             result[status] -= int(prev[status])
 
 
