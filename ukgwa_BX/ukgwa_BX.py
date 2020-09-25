@@ -106,13 +106,13 @@ def check_errors(cdx, urls):
         statuses[x] = None
 
     for line in cdx:
-        if line["url"] in urls:
-            if "status" not in line.keys():
-                continue
-            try:
-                statuses[int(line["status"])].append(line["url"])
-            except:
-                statuses[int(line["status"])] = [line["url"]]
+        #if line["url"] in urls:
+        if "status" not in line.keys():
+            continue
+        try:
+            statuses[int(line["status"])].append(line["url"])
+        except:
+            statuses[int(line["status"])] = [line["url"]]
 
     return statuses
 
