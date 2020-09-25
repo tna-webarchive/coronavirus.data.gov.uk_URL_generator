@@ -128,9 +128,9 @@ os.chdir(home)
 today = datetime.today().strftime('%Y%m%d%H%M%S')
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 
-crawl_name = "."
-while "." in crawl_name:
-    crawl_name = input("What is the name of this crawl? (Do not use full stops) >") + "_" + today
+crawl_name = input("What is the name of this crawl? (Do not any of these characters (.-:) >") + "_" + today
+while ("." in crawl_name or "-" in crawl_name) or ":" in crawl_name:
+    crawl_name = input("Crawl name must not include dashes, full stops or colons. Please re-enter: > ") + "_" + today
 
 collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
 CVDB_folder = home + "covid_dashboard/"
