@@ -1,4 +1,4 @@
-import subprocess, os
+import subprocess, os, csv
 
 def run_BX(yaml_loc):
     # initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
@@ -120,7 +120,9 @@ def check_errors(cdx, urls):
 def patch(statuses):
     print("\nHere are the HTTP responses for this crawl and their frequency:\n")
 
-    for x in [[code, len(statuses[code])] for code in statuses if statuses[code]]:
+    result = [[code, len(statuses[code])] for code in statuses if statuses[code]]           #compare with previous result if patch
+
+    for x in result:
         print(x)
 
     patch=None
