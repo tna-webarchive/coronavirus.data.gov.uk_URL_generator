@@ -130,7 +130,7 @@ types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 
 crawl_name = input("What is the name of this crawl? >") + "_" + today
 while any(punctuation in crawl_name for punctuation in [".", "-", "/", ":", ",", "?", "!", ";", "(", ")", "[", "]", "{", "}"]):
-    crawl_name = input("Crawl name must not punctuation (except underscore _). Please re-enter: >") + "_" + today
+    crawl_name = input("Crawl name cannot include punctuation (except underscore _). Please re-enter: >") + "_" + today
 
 collection_loc = f"{home}browsertrix/webarchive/collections/{crawl_name}/"
 CVDB_folder = home + "covid_dashboard/"
