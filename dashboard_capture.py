@@ -121,9 +121,11 @@ def run_crawl(urls, file_name, collection_loc):
     status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj", urls)
     patch_urls = ukgwa_BX.patch(status)
     if patch_urls:
+        os.system(f"browsertrix crawl remove {crawl_id}")
         run_crawl(patch_urls, "PATCH"+crawl_name, collection_loc)
     else:
         os.system(f"sudo mv {collection_loc} {crawl_loc}")
+        os.system(f"browsertrix crawl remove {crawl_id}")
         print(f"Crawl finished. Crawl files located in:\n{crawl_loc}{crawl_name}/")
 
 
@@ -164,6 +166,8 @@ with open(f"current_areaNames_{today[:8]}.csv", "r") as areaNames:
 all_urls = get_all_urls(areaNames)
 
 run_crawl(all_urls, crawl_name, collection_loc)
+
+
 
 
 
