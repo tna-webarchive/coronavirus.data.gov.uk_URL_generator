@@ -97,7 +97,7 @@ def get_all_urls(areaNames):
 
 
 def run_crawl(urls, file_name, collection_loc):
-    yaml = ukgwa_BX.create_yaml(urls, file_name, crawl_loc)
+    yaml = ukgwa_BX.create_yaml(urls, crawl_loc)
     crawl_id = ukgwa_BX.run_BX(yaml)
     response = ukgwa_BX.check_crawl(crawl_id)
     while response["STATUS"] != "done":
@@ -113,7 +113,7 @@ def run_crawl(urls, file_name, collection_loc):
     print("\nCrawl finished")
     os.system(f"browsertrix crawl remove {crawl_id}")
 
-    status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj", urls)
+    status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj")
     patch_urls = ukgwa_BX.patch(status)
     if patch_urls:
         run_crawl(patch_urls, "PATCH"+crawl_name, collection_loc)

@@ -13,15 +13,16 @@ def run_BX(yaml_loc):
     return crawl_id
 
 
-def create_yaml(urls, file_name, folder):
+def create_yaml(urls, folder):
     while "" in urls:
         urls.remove("")
     while None in urls:
         urls.remove(None)
 
-    # with open(f"{folder}file_name_URLS.txt", "w") as dest:
-    #     url_text = "\n".join(urls)
-    #     dest.write(url_text)
+    if f"{crawl_name}.yaml" in os.listdir(crawl_loc):
+        file_name = "PATCH" + crawl_name
+    else:
+        file_name = crawl_name
 
     yaml_template = f"""crawls:
   - name: {file_name}
@@ -29,7 +30,7 @@ def create_yaml(urls, file_name, folder):
     crawl_depth: 2
     num_browsers: 1
     num_tabs: 2
-    coll: {folder.split("/")[-2]}
+    coll: {crawl_name}
     mode: record
 
     scopes:
@@ -91,7 +92,7 @@ def check_crawl(crawl_id):
 #####MAKE SURE IT DOESNT BREAK IF NOT CRAWLS######
 
 
-def check_errors(cdx, urls):
+def check_errors(cdx):
     try:
         with open(cdx, "r") as cdx:
             cdx = cdx.read()
@@ -110,7 +111,6 @@ def check_errors(cdx, urls):
         statuses[x] = None
 
     for line in cdx:
-        #if line["url"] in urls:
         if "status" not in line.keys():
             continue
         try:
@@ -171,3 +171,7 @@ def patch(statuses):
 
         elif patch == "n":
             return False
+
+
+
+#patch should be function of check_errors
