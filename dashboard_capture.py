@@ -5,6 +5,7 @@ from requests import get
 from json import dumps
 
 
+
 def get_areaNames():
     ENDPOINT = "https://api.coronavirus.data.gov.uk/v1/lookup?"       #3.1 lookup query url root
     areaNames = [[]] * len(types)
@@ -114,7 +115,7 @@ def run_crawl(urls, file_name, collection_loc):
     os.system(f"browsertrix crawl remove {crawl_id}")
 
     status = ukgwa_BX.check_errors(f"{collection_loc}/indexes/autoindex.cdxj")
-    patch_urls = ukgwa_BX.patch(status)
+    patch_urls = ukgwa_BX.patch(status, crawl_loc)
     if patch_urls:
         run_crawl(patch_urls, "PATCH"+crawl_name, collection_loc)
     else:

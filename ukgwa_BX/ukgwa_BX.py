@@ -1,5 +1,8 @@
 import subprocess, os, json
 
+def crawl_name(crawl_name):
+    global crawl_name
+
 def run_BX(yaml_loc):
     # initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
     # os.system(initialise)
@@ -19,7 +22,9 @@ def create_yaml(urls, folder):
     while None in urls:
         urls.remove(None)
 
-    if f"{crawl_name}.yaml" in os.listdir(crawl_loc):
+    crawl_name = folder.rsplit("/")[-2]
+
+    if f"{crawl_name}.yaml" in os.listdir(folder):
         file_name = "PATCH" + crawl_name
     else:
         file_name = crawl_name
@@ -121,7 +126,7 @@ def check_errors(cdx):
     return statuses
 
 
-def patch(statuses):
+def patch(statuses, crawl_loc):
     if type(statuses) != dict:
         return False
 
