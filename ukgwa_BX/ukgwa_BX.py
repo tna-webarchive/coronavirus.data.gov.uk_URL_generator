@@ -127,7 +127,7 @@ def patch(statuses, crawl_loc):
     if type(statuses) != dict:
         return False
 
-    result = {code:len(statuses[code]) for code in statuses if statuses[code]]}           #compare with previous result if patch
+    result = {code:len(statuses[code]) for code in statuses if statuses[code]}           #compare with previous result if patch
 
     if "HTTP_responses.json" in os.listdir(crawl_loc):
         with open(f"{crawl_loc}HTTP_responses.json", "r") as prev:
