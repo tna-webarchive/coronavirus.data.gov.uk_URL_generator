@@ -85,19 +85,13 @@ def get_all_urls(areaNames):
         reorder = base + "=" + ";".join(filters) + "&" + structure
         all_urls.append(reorder)
 
-
     all_urls = list(set(all_urls))                #Randomises list
 
     with open(f"{home}coronavirus.data.gov.uk_URL_generator/URL_templates/lookups.txt", "r") as lookups:
         lookups = lookups.read()
         lookups = lookups.split("\n")               # 4.7 Creates list of lookup URls from lookups.txt
 
-    num_urls = len(all_urls)
-    num_lookups = len(lookups)
-    step = num_urls / num_lookups
-
-    for url, index in zip(lookups, range(0, num_urls, int(step))):
-        all_urls.insert(index, url)                        # evenly distributes lookup queries to avoid throttling
+    all_urls = lookups + all_urls
 
     return all_urls                                      #4.10 Returns the list
 
