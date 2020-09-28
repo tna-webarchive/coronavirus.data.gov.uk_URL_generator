@@ -42,7 +42,7 @@ def create_yaml(urls, folder):
       - {{URLS}}
 
     behavior_max_time: 80
-    browser: chrome:73
+    browser: chrome:84
     cache: always"""
 
     with open(f"{folder}yaml_template.yaml", "w") as dest:
@@ -142,7 +142,7 @@ def patch(statuses, crawl_loc):
     print("\nHere are the HTTP responses for this crawl and their frequency:\n")
 
     for x in result:
-        print(x, ",", result[x])
+        print(x, "-", result[x])
 
     patch=None
     while patch not in ["y", "n"]:

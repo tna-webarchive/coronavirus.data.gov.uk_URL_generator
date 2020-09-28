@@ -118,7 +118,7 @@ def run_crawl(urls, file_name, collection_loc):
     if patch_urls:
         run_crawl(patch_urls, "PATCH"+crawl_name, collection_loc)
     else:
-        os.system(f"sudo mv {collection_loc} {crawl_loc}")
+        os.system(f"sudo cp -r {collection_loc} {crawl_loc}")
         print(f"Crawl finished. Crawl files located in:\n{crawl_loc}{crawl_name}/")
 
 
