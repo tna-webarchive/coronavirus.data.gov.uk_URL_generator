@@ -31,7 +31,7 @@ def create_yaml(urls, folder):
     crawl_type: custom
     crawl_depth: 2
     num_browsers: 1
-    num_tabs: 2
+    num_tabs: 3
     coll: {crawl_name}
     mode: record
 
