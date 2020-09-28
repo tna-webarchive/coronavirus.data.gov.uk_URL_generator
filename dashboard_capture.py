@@ -157,7 +157,7 @@ with open(f"current_areaNames_{today[:8]}.csv", "r") as areaNames:
     reader = csv.reader(areaNames)
     areaNames = list(reader)
 
-all_urls = get_all_urls(areaNames)[:100]
+all_urls = get_all_urls(areaNames)
 
 run_crawl(all_urls, crawl_name, collection_loc)
 
