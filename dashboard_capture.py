@@ -147,8 +147,7 @@ areaName_files = [x for x in os.listdir() if (x.startswith("current_areaNames"))
 if f"current_areaNames_{today[:8]}.csv" not in areaName_files:
     get_areaNames()
     apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
-    initialise = "cd ~; cd browsertrix; sudo git pull; sudo ./install-browsers.sh; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator; cd ~; cd covid_dashboard"
-    os.system(apt_updates + "; " + initialise)
+    os.system(apt_updates)
     os.system(apt_updates)
     for x in areaName_files:
         os.remove(x)
