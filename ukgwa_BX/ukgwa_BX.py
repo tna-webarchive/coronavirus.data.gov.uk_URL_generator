@@ -13,7 +13,7 @@ def run_BX(yaml_loc):
     return crawl_id
 
 
-def create_yaml(urls, folder):
+def create_yaml(urls, folder, default=False):
     while "" in urls:
         urls.remove("")
     while None in urls:
@@ -48,13 +48,14 @@ def create_yaml(urls, folder):
     with open(f"{folder}yaml_template.yaml", "w") as dest:
         dest.write(yaml_template)
 
-    default = input("Would you like to use default YAML template? [Y/n]").lower()
+    if not default:
+        default = input("Would you like to use default YAML template? [Y/n]").lower()
 
-    while default == "n":
-        default = input(f"""
-Make your changes to the YAML template {folder}yaml_template.yaml
-(Please do not change 'name' or 'coll' fields)
-When happy with the template, save it and hit return here in the terminal>""")
+        while default == "n":
+            default = input(f"""
+    Make your changes to the YAML template {folder}yaml_template.yaml
+    (Please do not change 'name' or 'coll' fields)
+    When happy with the template, save it and hit return here in the terminal>""")
 
         with open(f"{folder}yaml_template.yaml", "r") as yaml_template:
             yaml_template = yaml_template.read()
