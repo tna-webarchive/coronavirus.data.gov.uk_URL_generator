@@ -97,7 +97,7 @@ def get_all_urls(areaNames):
 
 
 def run_crawl(urls, file_name, collection_loc):
-    yaml = ukgwa_BX.create_yaml(urls, crawl_loc)
+    yaml = ukgwa_BX.create_yaml(urls, crawl_loc, default=True)
     crawl_id = ukgwa_BX.run_BX(yaml)
     response = ukgwa_BX.check_crawl(crawl_id)
     while response["STATUS"] != "done":
