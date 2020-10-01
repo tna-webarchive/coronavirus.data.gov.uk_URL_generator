@@ -115,3 +115,12 @@ https://coronavirus.data.gov.uk/static/js/9.10632f0a.chunk.js
 https://coronavirus.data.gov.uk/static/js/main.3f2affce.chunk.js
 https://www.arcgis.com/apps/webappviewer/index.html?id=47574f7a6e454dc6a42c5f6912ed7076
 https://c19pub.azureedge.net/assets/modals/cumPillarOneTwoTestsByPublishDate.md
+https://c19pub.azureedge.net/assets/modals/plannedPCRCapacityByPublishDate.md
+https://c19pub.azureedge.net/assets/modals/newPCRTestsByPublishDate.md
+https://c19pub.azureedge.net/assets/modals/cumPCRTestsByPublishDate.md
+https://coronavirus.data.gov.uk/static/js/4.ea861101.chunk.js
+https://coronavirus.data.gov.uk/static/js/main.5937fa0d.chunk.js
+http://www.atmrum.net/rum.js
+https://coronavirus.data.gov.uk/static/js/9.5c55ad9e.chunk.js
+https://api.coronavirus.data.gov.uk/v1/lookup?filters=areaType=nation&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://coronavirus.data.gov.uk/static/js/1.21fabfc6.chunk.js
