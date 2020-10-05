@@ -1,15 +1,12 @@
 import subprocess, os, json, time
 
 def run_BX(yaml_loc):
-    #initialise = "cd ~; cd browsertrix; sudo git pull; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
-    initialise = "cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
+    initialise = "cd ~; cd browsertrix; sudo git pull; sudo docker-compose build; sudo docker-compose up -d; cd ~; browsertrix crawl remove-all; cd coronavirus.data.gov.uk_URL_generator"
 
     os.system(initialise)
 
     check = subprocess.run(f"sudo browsertrix crawl create {yaml_loc}", shell=True,
                            stdout=subprocess.PIPE).stdout.decode("utf-8")
-
-    time.sleep(5)
 
     print("check:", check)
     check = check.split("\n")[1]
