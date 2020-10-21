@@ -178,3 +178,4 @@ https://coronavirus.data.gov.uk/public/assets/modals/cumPillarOneTwoTestsByPubli
 https://coronavirus-staging.data.gov.uk/static/js/11.9f01e895.chunk.js
 https://coronavirus-staging.data.gov.uk/static/media/close_icon.3bbe74fb.svg
 https://coronavirus-staging.data.gov.uk/static/js/12.6d57866e.chunk.js
+https://coronavirus-staging.data.gov.uk/static/media/icon-arrow-green.1d1bfb59.svg
