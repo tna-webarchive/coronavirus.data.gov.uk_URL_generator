@@ -113,7 +113,6 @@ def get_all_urls(areaNames):
     return all_urls                                      #4.10 Returns the list
 
 
-
 os.chdir(home)
 today = datetime.today().strftime("%Y%m%d")
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
