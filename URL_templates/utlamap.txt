@@ -1,3 +1,3 @@
 {utlacode}.svg
-https://api.coronavirus.data.gov.uk/v1/data?filters=areaCode={utlacode};areaType=utla;date={date}&structure=%7B%22date%22:%22date%22,%22name%22:%22areaName%22,%22type%22:%22areaType%22,%22value%22:%22newCasesBySpecimenDate%22,%22rollingRate%22:%22newCasesBySpecimenDateRollingRate%22%7D
-https://api.coronavirus.data.gov.uk/v1/data?filters=areaCode={utlacode};areaType=utla;date%253C={date};date%253E={date2}&structure=%5B%22newCasesBySpecimenDate%22,%22date%22%5D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaCode={code};areaType=utla;date={stamp}&structure=%7B%22date%22:%22date%22,%22name%22:%22areaName%22,%22type%22:%22areaType%22,%22value%22:%22newCasesBySpecimenDate%22,%22rollingRate%22:%22newCasesBySpecimenDateRollingRate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaCode={code};areaType=utla;date%253C={stamp};date%253E={stamp2}&structure=%5B%22newCasesBySpecimenDate%22,%22date%22%5D
