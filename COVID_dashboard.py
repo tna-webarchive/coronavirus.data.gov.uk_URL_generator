@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date, timedelta
 import sys, os, csv
 from requests import get
 from json import dumps
@@ -74,7 +74,7 @@ def get_all_urls(areaNames):
 
     #staging_urls = [url.replace("https://api.coronavirus.data.gov.uk", "https://api.coronavirus-staging.data.gov.uk") for url in all_urls  if "https://api.coronavirus.data.gov.uk" in url]
 
-    all_urls = all_urls + newrls #+ staging_urls
+    all_urls += newrls #+ staging_urls
 
     to_reorder = [url for url in all_urls if ((";" in url and url.count(";") == 1) and "overview" in url)]
 
@@ -94,7 +94,21 @@ def get_all_urls(areaNames):
         lookups = lookups.read()
         lookups = lookups.split("\n")               # 4.7 Creates list of lookup URLs from lookups.txt
 
-    all_urls = lookups + all_urls
+    all_urls += lookups
+
+    stamp = (date.today() - timedelta(6)).isoformat()
+    stamp2 = (date.today() - timedelta(19)).isoformat()
+    map_urls = []
+    for view in ["utla", "ltla", "msoa"]:
+        with open(f"areaCodes/{view}codes.txt", "r") as codes, open(f"URL_templates/{view}map.txt", "r") as urls:
+            codes = codes.read().split("\n")
+            urls = urls.read().split("\n")
+        for code in codes:
+            for url in urls:
+                url = eval("f\"" + url + "\"")
+                map_urls.append(url)
+
+    all_urls += map_urls
 
     return all_urls                                      #4.10 Returns the list
 

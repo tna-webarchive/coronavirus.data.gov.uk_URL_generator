@@ -227,3 +227,7 @@ https://coronavirus.data.gov.uk/downloads/maps/ltla-ref.geojson
 https://coronavirus.data.gov.uk/downloads/maps/msoa_data_latest.geojson
 https://coronavirus.data.gov.uk/downloads/maps/msoa-ref.geojson
 https://coronavirus-staging.data.gov.uk/static/media/icon-magnify.89f49690.svg
+https://coronavirus-staging.data.gov.uk/static/media/icon-arrow-red.59266cad.svg
+https://coronavirus.data.gov.uk/downloads/maps/data/ltla-RollingRate.json
+https://coronavirus.data.gov.uk/downloads/maps/data/msoa-RollingRate.json
+https://coronavirus.data.gov.uk/downloads/maps/data/utla-RollingRate.json
