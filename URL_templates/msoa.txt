@@ -1,3 +1,0 @@
-https://coronavirus.data.gov.uk/public/assets/frontpage/scales/msoa/{msoa}.svg
-https://api.coronavirus.data.gov.uk/v1/soa?filters=&areaType=msoa&areaCode={msoa}&structure=%7B%22areaCode%22:%22areaCode%22,%22release%22:%22release%22,%22newCasesBySpecimenDate%22:%5B%7B%22date%22:%22date%22,%22rollingSum%22:%22rollingSum%22,%22rollingRate%22:%22rollingRate%22%7D%5D%7D
-https://api.coronavirus.data.gov.uk/code?category=msoa&search={msoa}
