@@ -231,3 +231,4 @@ https://coronavirus-staging.data.gov.uk/static/media/icon-arrow-red.59266cad.svg
 https://coronavirus.data.gov.uk/downloads/maps/data/ltla-RollingRate.json
 https://coronavirus.data.gov.uk/downloads/maps/data/msoa-RollingRate.json
 https://coronavirus.data.gov.uk/downloads/maps/data/utla-RollingRate.json
+https://coronavirus-staging.data.gov.uk/details/interactive-map
