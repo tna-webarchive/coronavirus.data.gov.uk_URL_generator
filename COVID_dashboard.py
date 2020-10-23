@@ -100,7 +100,7 @@ def get_all_urls(areaNames):
     stamp2 = (date.today() - timedelta(19)).isoformat()
     map_urls = []
     for view in ["utla", "ltla", "msoa"]:
-        with open(f"areaCodes/{view}codes.txt", "r") as codes, open(f"URL_templates/{view}map.txt", "r") as urls:
+        with open(f"{ROOT}areaCodes/{view}codes.txt", "r") as codes, open(f"{ROOT}URL_templates/{view}map.txt", "r") as urls:
             codes = codes.read().split("\n")
             urls = urls.read().split("\n")
         for code in codes:
