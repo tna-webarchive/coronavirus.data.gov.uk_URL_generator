@@ -128,8 +128,6 @@ areaName_files = [x for x in os.listdir() if (x.startswith("current_areaNames"))
 
 if f"current_areaNames_{today}.csv" not in areaName_files:
     get_areaNames()
-    apt_updates = "sudo apt-get update; sudo apt update; sudo apt-get upgrade; sudo apt upgrade"
-    os.system(apt_updates)
     for x in areaName_files:
         os.remove(x)
 
