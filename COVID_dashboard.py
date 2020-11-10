@@ -137,4 +137,4 @@ with open(f"current_areaNames_{today}.csv", "r") as areaNames:
 
 all_urls = get_all_urls(areaNames)
 
-capture.capture(all_urls, area=CVDB_folder, crawl_depth=1, browser="chrome:84")
+capture.capture(all_urls, area=CVDB_folder, crawl_depth=0, browser="chrome:84")
