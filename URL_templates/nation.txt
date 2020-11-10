@@ -73,6 +73,8 @@ https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={na
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22newDeaths28DaysByPublishDate%22:%22newDeaths28DaysByPublishDate%22,%22cumDeaths28DaysByPublishDate%22:%22cumDeaths28DaysByPublishDate%22%7D&format=
 https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&latestBy=&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22femaleCases%22:%22femaleCases%22,%22maleCases%22:%22maleCases%22%7D&format=
 https://coronavirus.data.gov.uk/details/cases?areaType=nation&areaName={name}
-https://coronavirus.data.gov.uk/details/testing?areaType=nation&areaName={name}
 https://coronavirus.data.gov.uk/details/healthcare?areaType=nation&areaName={name}
 https://coronavirus.data.gov.uk/details/deaths?areaType=nation&areaName={name}
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&structure=%7B%22date%22:%22date%22,%22newCasesBySpecimenDate%22:%22newCasesBySpecimenDate%22,%22cumCasesBySpecimenDate%22:%22cumCasesBySpecimenDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&structure=%7B%22date%22:%22date%22,%22newCasesByPublishDate%22:%22newCasesByPublishDate%22,%22cumCasesByPublishDate%22:%22cumCasesByPublishDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nation;areaName={name}&structure=%7B%22date%22:%22date%22,%22newCasesBySpecimenDateRollingSum%22:%22newCasesBySpecimenDateRollingSum%22,%22newCasesBySpecimenDateRollingRate%22:%22newCasesBySpecimenDateRollingRate%22%7D

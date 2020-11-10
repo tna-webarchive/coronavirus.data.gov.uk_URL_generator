@@ -45,7 +45,6 @@ https://coronavirus.data.gov.uk/details/cases
 https://coronavirus.data.gov.uk/details/healthcare
 https://coronavirus.data.gov.uk/details/deaths
 https://coronavirus.data.gov.uk/
-https://coronavirus.data.gov.uk/details/interactive-map
 https://coronavirus.data.gov.uk/downloads/maps/nation_percentiles.json
 https://coronavirus.data.gov.uk/map/assets/tile.json
 https://openmaptiles.github.io/positron-gl-style/sprite@2x.json
@@ -77,3 +76,5 @@ https://coronavirus.data.gov.uk/downloads/maps/msoa-ref.geojson
 https://coronavirus.data.gov.uk/downloads/maps/data/ltla-RollingRate.json
 https://coronavirus.data.gov.uk/downloads/maps/data/msoa-RollingRate.json
 https://coronavirus.data.gov.uk/downloads/maps/data/utla-RollingRate.json
+https://coronavirus.data.gov.uk/static/media/icon-arrow-green.1d1bfb59.svg
+https://coronavirus.data.gov.uk/static/media/icon-arrow-red.59266cad.svg

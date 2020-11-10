@@ -59,3 +59,5 @@ https://coronavirus.data.gov.uk/details/testing?areaType=overview&areaName={name
 https://coronavirus.data.gov.uk/details/cases?areaType=overview&areaName={name}
 https://coronavirus.data.gov.uk/details/healthcare?areaType=overview&areaName={name}
 https://coronavirus.data.gov.uk/details/deaths?areaType=overview&areaName={name}
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22newDeaths28DaysByDeathDate%22:%22newDeaths28DaysByDeathDate%22,%22cumDeaths28DaysByDeathDate%22:%22cumDeaths28DaysByDeathDate%22%7D
+https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=overview&structure=%7B%22date%22:%22date%22,%22areaName%22:%22areaName%22,%22newDeaths28DaysByPublishDate%22:%22newDeaths28DaysByPublishDate%22,%22cumDeaths28DaysByPublishDate%22:%22cumDeaths28DaysByPublishDate%22%7D
