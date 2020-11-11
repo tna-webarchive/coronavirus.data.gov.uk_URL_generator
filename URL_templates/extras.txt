@@ -78,3 +78,10 @@ https://coronavirus.data.gov.uk/downloads/maps/data/msoa-RollingRate.json
 https://coronavirus.data.gov.uk/downloads/maps/data/utla-RollingRate.json
 https://coronavirus.data.gov.uk/static/media/icon-arrow-green.1d1bfb59.svg
 https://coronavirus.data.gov.uk/static/media/icon-arrow-red.59266cad.svg
+https://coronavirus.data.gov.uk/downloads/demographic/cases/specimenDate_ageDemographic-unstacked.csv
+https://coronavirus.data.gov.uk/downloads/demographic/cases/specimenDate_ageDemographic-stacked.csv
+https://coronavirus.data.gov.uk/downloads/demographic/cases/publish_date-latest.csv
+https://coronavirus.data.gov.uk/downloads/csv/coronavirus-cases_latest.csv
+https://coronavirus.data.gov.uk/downloads/supplements/lookup_table.csv
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.csv
+https://coronavirus.data.gov.uk/downloads/msoa_data/MSOAs_latest.json
