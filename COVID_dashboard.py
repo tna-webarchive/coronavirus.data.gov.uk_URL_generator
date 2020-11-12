@@ -108,9 +108,7 @@ def get_all_urls(areaNames):
                 url = eval("f\"" + url + "\"")
                 map_urls.append(url)
 
-    all_urls += map_urls
-
-    return all_urls                                      #4.10 Returns the list
+    return [all_urls, map_urls]                                  #4.10 Returns the list
 
 
 os.chdir(home)
@@ -135,6 +133,9 @@ with open(f"current_areaNames_{today}.csv", "r") as areaNames:
     reader = csv.reader(areaNames)
     areaNames = list(reader)
 
-all_urls = get_all_urls(areaNames)
+both_sets = get_all_urls(areaNames)
 
-capture.capture(all_urls, area=CVDB_folder, crawl_depth=0, browser="chrome:84")
+#capture.capture(both_sets[0], area=CVDB_folder, crawl_depth=1, browser="chrome:84")
+
+with open("map_urls.txt", "w") as dest:
+    dest.write("\n".join(both_sets[1]))
