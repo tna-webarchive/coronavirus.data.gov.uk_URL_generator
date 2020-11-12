@@ -135,7 +135,9 @@ with open(f"current_areaNames_{today}.csv", "r") as areaNames:
 
 both_sets = get_all_urls(areaNames)
 
-#capture.capture(both_sets[0], area=CVDB_folder, crawl_depth=1, browser="chrome:84")
-
 with open("map_urls.txt", "w") as dest:
     dest.write("\n".join(both_sets[1]))
+
+capture.capture(both_sets[0], area=CVDB_folder, crawl_depth=1, browser="chrome:84")
+
+
