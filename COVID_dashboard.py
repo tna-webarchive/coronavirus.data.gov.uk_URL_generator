@@ -138,7 +138,6 @@ both_sets = get_all_urls(areaNames)
 capture_name = capture.check_validity(input("Please enter name of capture.>"))
 
 with open("map_urls.txt", "w") as dest:
-    dest.write(f"{CVDB_folder}\n")
     dest.write(f"{capture_name}\n")
     dest.write("\n".join(both_sets[1]))
 
