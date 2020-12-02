@@ -8,7 +8,7 @@ import capture
 
 CVDB_folder = home + "covid_dashboard/"
 
-with open(f"{map_urls.txt", "r") as source:
+with open(f"{CVDB_folder}map_urls.txt", "r") as source:
     map_urls = source.read().split("\n")
 
 capture_name = map_urls.pop(0)
