@@ -6,7 +6,7 @@ sys.path.insert(1, f"{home}BX_tools")
 
 import capture
 
-time.sleep(10)
+time.sleep(100)
 
 with open("map_urls.txt", "r") as source:
     map_urls = source.read().split("\n")
