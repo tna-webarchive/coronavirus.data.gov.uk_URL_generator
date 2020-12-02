@@ -1,5 +1,5 @@
 from datetime import datetime, date, timedelta
-import sys, os, csv
+import sys, os, csv, time
 from requests import get
 from json import dumps
 
@@ -135,9 +135,20 @@ with open(f"current_areaNames_{today}.csv", "r") as areaNames:
 
 both_sets = get_all_urls(areaNames)
 
+capture_name = capture.check_validity(input("Please enter name of capture.>"))
+
 with open("map_urls.txt", "w") as dest:
+    dest.write(f"{CVDB_folder}\n")
+    dest.write(f"{capture_name}\n")
     dest.write("\n".join(both_sets[1]))
 
-capture.capture(both_sets[0], area=CVDB_folder, crawl_depth=1, browser="chrome:84")
+capture.capture(both_sets[0], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined")
+
+while not os.path.isdir(f"{CVDB_folder}map_combined.warc.gz"):
+    time.sleep(30)
+    print("Waiting for map urls crawl to finish")
+
+capture.combine_warcs(f"{CVDB_folder}", name="combined_map_db")
+
 
 
