@@ -31,11 +31,11 @@ while True:
         break
     if len(to_patch) > 0:
         patch += 1
-        l = "\n".join(l)
+        l = "\n".join(to_patch)
         with open(f"{'patch'*patch}map_urls.txt", "w") as dest:
             dest.write(l)
     else:
-        print("capture is complete")
+        print("\ncapture is complete")
         break
 
 capture.combine_warcs(CVDB_folder, name="map_combined")
