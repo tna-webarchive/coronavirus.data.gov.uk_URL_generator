@@ -147,7 +147,4 @@ while not os.path.isdir(f"{CVDB_folder}map_combined.warc.gz"):
     time.sleep(30)
     print("Waiting for map urls crawl to finish")
 
-capture.combine_warcs(f"{CVDB_folder}", name="combined_map_db")
-
-
-
+capture.combine_warcs(f"{CVDB_folder}", name="FINALcombined_map_db")
