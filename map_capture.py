@@ -8,13 +8,37 @@ import capture
 
 CVDB_folder = home + "covid_dashboard/"
 
-with open(f"{CVDB_folder}map_urls.txt", "r") as source:
+with open(f"map_urls.txt", "r") as source:
     map_urls = source.read().split("\n")
 
 capture_name = map_urls.pop(0)
 
-capture.capture(map_urls, f"maps_{capture_name}", CVDB_folder, crawl_depth=1, patch="y", patch_codes="403", progress=False, warc_name="map_combined")
+os.rename("map_urls.txt", f"{capture_name}/map_urls.txt")
 
+os.chdir(CVDB_folder+capture_name)
+
+
+patch = 0
+
+while True:
+    os.system(f'wget -O "temp.html" --no-verbose --input-file={"patch"*patch}map_urls.txt -e robots=off --tries=2 --waitretry=5 --user-agent="The National Archives UK Government Web Archive webarchive@nationalarchives.gov.uk" --warc-file="{"patch"*patch}map_capture" --warc-max-size=1G --wait=0.2 --limit-rate=950k')
+    os.system(f"cdxj-indexer {'patch'*patch}map_capture-00000.warc.gz > {'patch'*patch}map_patch.cdxj")
+    cdx = capture.Cdx(f"{'patch'*patch}map_patch.cdxj")
+    rud = cdx.create_rud()
+    to_patch = rud.get_urls("403,429")
+    if patch > 5:
+        print("Patched 5 times so exiting capture.")
+        break
+    if len(to_patch) > 0:
+        patch += 1
+        l = "\n".join(l)
+        with open(f"{'patch'*patch}map_urls.txt", "w") as dest:
+            dest.write(l)
+    else:
+        print("capture is complete")
+        break
+
+capture.combine_warcs(CVDB_folder, name="map_combined")
 
 
 
