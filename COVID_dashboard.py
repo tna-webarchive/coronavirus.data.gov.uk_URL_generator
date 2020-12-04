@@ -144,7 +144,7 @@ with open("map_urls.txt", "w") as dest:
 
 capture.capture(both_sets[0][:100], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False)
 
-while not os.path.isdir(f"{CVDB_folder}final_map.warc.gz"):
+while not os.path.isfile(f"{CVDB_folder}combined_map.warc.gz"):
     time.sleep(30)
     print("\rWaiting for map urls crawl to finish...", end="")
 

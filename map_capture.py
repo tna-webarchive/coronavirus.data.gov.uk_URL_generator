@@ -50,7 +50,7 @@ while True:
         print("\ncapture is complete")
         break
 
-os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "final_map.warc.gz")
+os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "combined_map.warc.gz")
 
 
 
