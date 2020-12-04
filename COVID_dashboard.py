@@ -136,7 +136,7 @@ with open(f"current_areaNames_{today}.csv", "r") as areaNames:
 both_sets = get_all_urls(areaNames)
 map_urls = list(set(both_sets[1][:100]))
 
-capture_name = capture.check_validity(input("Please enter name of capture.>"))
+capture_name = capture.check_validity(input("Please enter name of capture.>")) + "test"
 
 with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
