@@ -151,4 +151,4 @@ while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz")
     time.sleep(30)
 
 
-capture.combine_warcs(f"{CVDB_folder}", name="FINALcombined_map_db")
+capture.combine_warcs(f"{CVDB_folder}{capture_folder}", name="FINALcombined_map_db")
