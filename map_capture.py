@@ -8,6 +8,8 @@ import capture
 
 CVDB_folder = home + "covid_dashboard/"
 
+os.chdir(CVDB_folder)
+
 with open(f"map_urls.txt", "r") as source:
     map_urls = source.read().split("\n")
 
@@ -16,7 +18,6 @@ capture_name = map_urls.pop(0)
 os.rename("map_urls.txt", f"{capture_name}/map_urls.txt")
 
 os.chdir(CVDB_folder+capture_name)
-
 
 patch = 0
 
