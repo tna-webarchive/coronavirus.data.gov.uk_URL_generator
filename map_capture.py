@@ -33,6 +33,7 @@ while True:
         print("Patched 5 times so exiting capture.")
         break
     if len(to_patch) > 0:
+        print(f"\nPATCHING {len(to_patch)} URLs....")
         patch += 1
         l = "\n".join(to_patch)
         with open(f"{'patch'*patch}map_urls.txt", "w") as dest:
