@@ -48,10 +48,10 @@ while True:
             dest.write(l)
     else:
         print("\ncapture is complete")
-        print(f"\nWait for dashboard capture to finish. Final combined WARC will be located at: {CVDB_folder}{capture_name}/FINALcombined_map_db.warc.gz")
+        print(f"\nWait for dashboard capture to finish. Final combined WARC will be located at: \n{CVDB_folder}{capture_name}/FINALcombined_map_db.warc.gz")
         break
 
-os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "combined_map.warc.gz")
+os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "lastpatch_map.warc.gz")
 
 
 
