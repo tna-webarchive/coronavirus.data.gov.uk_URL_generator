@@ -1,8 +1,10 @@
-import os, sys, time
+import os, sys
+from datetime import datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
 home = os.path.expanduser("~") + "/"
 sys.path.insert(1, f"{home}BX_tools")
+today = datetime.today().strftime("%Y%m%d")
 
 import capture
 
@@ -13,7 +15,7 @@ os.chdir(CVDB_folder)
 with open(f"map_urls.txt", "r") as source:
     map_urls = source.read().split("\n")
 
-capture_name = map_urls.pop(0)
+capture_name = map_urls.pop(0) + today
 
 os.rename("map_urls.txt", f"{capture_name}/map_urls.txt")
 
