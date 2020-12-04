@@ -27,17 +27,17 @@ while True:
     if patch > 0:
         t = datetime.today()
         if t.minute > 20:
-            wait = 80 - t.minute
+            wait = 90 - t.minute
         else:
-            wait = 20 - t.minute
+            wait = 30 - t.minute
     time.sleep(wait*60)
     os.system(f'wget -O "temp.html" --no-verbose --input-file={"patch"*patch}map_urls.txt -e robots=off --tries=2 --waitretry=5 --user-agent="The National Archives UK Government Web Archive webarchive@nationalarchives.gov.uk" --warc-file="{"patch"*patch}map_capture" --warc-max-size=1G --wait=0.2 --limit-rate=300k')
     os.system(f"cdxj-indexer {'patch'*patch}map_capture-00000.warc.gz > {'patch'*patch}map_patch.cdxj")
     cdx = capture.Cdx(f"{'patch'*patch}map_patch.cdxj")
     rud = cdx.create_rud()
     to_patch = rud.get_urls("403,429")
-    if patch > 5:
-        print("Patched 5 times so exiting capture.")
+    if patch > 4:
+        print("Patched 4 times so exiting capture.")
         break
     if len(to_patch) > 0:
         print(f"\nPATCHING {len(to_patch)} URLs....")
@@ -49,7 +49,7 @@ while True:
         print("\ncapture is complete")
         break
 
-capture.combine_warcs(CVDB_folder, name="map_combined")
+os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "final_map.warc.gz")
 
 
 
