@@ -15,7 +15,7 @@ os.chdir(CVDB_folder)
 with open(f"map_urls.txt", "r") as source:
     map_urls = source.read().split("\n")
 
-capture_name = map_urls.pop(0) + today
+capture_name = map_urls.pop(0) + "_" + today
 
 os.rename("map_urls.txt", f"{capture_name}/map_urls.txt")
 
