@@ -146,7 +146,7 @@ capture.capture(both_sets[0][:100], capture_name=capture_name, area=CVDB_folder,
 
 capture_folder = capture_name + "_" + datetime.today().strftime("%d%m%Y")
 
-while not os.path.isfile(f"{CVDB_folder}{capture_name}/lastpatch_map.warc.gz"):
+while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
     time.sleep(30)
 
