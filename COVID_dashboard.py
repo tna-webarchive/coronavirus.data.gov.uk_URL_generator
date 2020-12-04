@@ -146,6 +146,6 @@ capture.capture(both_sets[0], capture_name=capture_name, area=CVDB_folder, crawl
 
 while not os.path.isdir(f"{CVDB_folder}map_combined.warc.gz"):
     time.sleep(30)
-    print("Waiting for map urls crawl to finish")
+    print("\rWaiting for map urls crawl to finish...", end="")
 
 capture.combine_warcs(f"{CVDB_folder}", name="FINALcombined_map_db")
