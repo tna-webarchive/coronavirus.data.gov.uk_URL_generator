@@ -30,7 +30,8 @@ while True:
             wait = 90 - t.minute
         else:
             wait = 30 - t.minute
-    time.sleep(wait*60)
+
+        time.sleep(wait*60)
     os.system(f'wget -O "temp.html" --no-verbose --input-file={"patch"*patch}map_urls.txt -e robots=off --tries=2 --waitretry=5 --user-agent="The National Archives UK Government Web Archive webarchive@nationalarchives.gov.uk" --warc-file="{"patch"*patch}map_capture" --warc-max-size=1G --wait=0.2 --limit-rate=300k')
     os.system(f"cdxj-indexer {'patch'*patch}map_capture-00000.warc.gz > {'patch'*patch}map_patch.cdxj")
     cdx = capture.Cdx(f"{'patch'*patch}map_patch.cdxj")
