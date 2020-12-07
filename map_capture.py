@@ -26,11 +26,11 @@ patch = 0
 while True:
     if patch > 0:
         t = datetime.today()
-        if t.minute > 20:
+        if t.minute > 30:
             wait = 90 - t.minute
         else:
             wait = 30 - t.minute
-
+        print(f"{datetime.now().strftime('%H:%M:%S')}: Waiting {wait} minutes to relaunch {len(to_patch)} URLs")
         time.sleep(wait*60)
     os.system(f'wget -O "temp.html" --no-verbose --input-file={"patch"*patch}map_urls.txt -e robots=off --tries=2 --waitretry=5 --user-agent="The National Archives UK Government Web Archive webarchive@nationalarchives.gov.uk" --warc-file="{"patch"*patch}map_capture" --warc-max-size=1G --wait=0.2 --limit-rate=300k')
     os.system(f"cdxj-indexer {'patch'*patch}map_capture-00000.warc.gz > {'patch'*patch}map_patch.cdxj")
