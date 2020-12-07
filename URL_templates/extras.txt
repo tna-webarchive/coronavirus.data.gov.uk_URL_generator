@@ -1,4 +1,5 @@
 https://coronavirus.data.gov.uk/details/testing
+https://coronavirus.data.gov.uk/details/download
 https://coronavirus.data.gov.uk/static/css/main.6b11eda8.chunk.css
 https://coronavirus.data.gov.uk/public/assets/dispatch/website_timestamp
 https://coronavirus.data.gov.uk/static/media/caret-down.966fce42.svg

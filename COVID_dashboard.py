@@ -32,12 +32,16 @@ def get_areaNames():
 def get_all_urls(areaNames):
     formats = ["csv", "json", "xml"]    #4.1 Three possible formats of the queries
     all_urls = []
+    stamp = datetime(today.year, today.month-3, today.day)
+    stamp = f"{stamp:%Y}-{stamp:%m}-{stamp:%d}"
 
     for i, type in enumerate(types):
         with open(f"{ROOT}URL_templates/{type}.txt", "r") as urls:    #4.2 Opens txt files with URL templates
             urls = urls.read()
             urls = urls.split("\n")                             #4.3 Creates list of URL templates
         for url in urls:
+            if "{stamp}" in url:
+                url = url.replace("{stamp}", stamp)
             if "{name}" in url:
                 for name in areaNames[i]:
                     named_url = url.replace("{name}", name)     #4.4 Replaces {name} in template to specific selected areaName
@@ -112,7 +116,8 @@ def get_all_urls(areaNames):
 
 
 os.chdir(home)
-today = datetime.today().strftime("%Y%m%d")
+today = datetime.today()
+todaystr = today.strftime("%Y%m%d")
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
 
 CVDB_folder = home + "covid_dashboard/"
@@ -124,12 +129,12 @@ os.chdir(CVDB_folder)
 
 areaName_files = [x for x in os.listdir() if (x.startswith("current_areaNames")) and (x.endswith(".csv"))]
 
-if f"current_areaNames_{today}.csv" not in areaName_files:
+if f"current_areaNames_{todaystr}.csv" not in areaName_files:
     get_areaNames()
     for x in areaName_files:
         os.remove(x)
 
-with open(f"current_areaNames_{today}.csv", "r") as areaNames:
+with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
     reader = csv.reader(areaNames)
     areaNames = list(reader)
 
@@ -144,7 +149,7 @@ with open("map_urls.txt", "w") as dest:
 
 capture.capture(both_sets[0], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False)
 
-capture_folder = capture_name + "_" + datetime.today().strftime("%d%m%Y")
+capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
 while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
