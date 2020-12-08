@@ -9,7 +9,7 @@ sys.path.insert(1, f"{home}BX_tools")
 import capture
 
 def get_areaNames():
-    ENDPOINT = "https://api.coronavirus.data.gov.uk/v1/lookup?"       #3.1 lookup query url root
+    ENDPOINT = "https://coronavirus.data.gov.uk/api/v1/lookup?"       #3.1 lookup query url root
     areaNames = [[]] * len(types)
 
     for i, type in enumerate(types):
