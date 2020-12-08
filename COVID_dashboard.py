@@ -25,7 +25,7 @@ def get_areaNames():
         names = [x["name"].replace(" ", "%20") for x in names]  #3.7 Replaces sapce with %20 for URL
         areaNames[i] = names                                    #3.8 Adds list to master list of Area Names
 
-    with open(f"current_areaNames_{today[:8]}.csv", "w") as dest:
+    with open(f"current_areaNames_{todaystr[:8]}.csv", "w") as dest:
         writer = csv.writer(dest)
         writer.writerows(areaNames)
 
