@@ -2,7 +2,7 @@ import os, sys, time
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
-home = "home/mich/"
+home = "/home/mich/"
 sys.path.insert(1, f"{home}BX_tools")
 today = datetime.today().strftime("%d%m%Y")
 
