@@ -141,7 +141,7 @@ with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
 both_sets = get_all_urls(areaNames)
 map_urls = list(set(both_sets[1]))
 
-capture_name = capture.check_validity(input("Please enter name of capture.>"))
+capture_name = today.strftime("%b%d")#capture.check_validity(input("Please enter name of capture.>"))
 
 with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
