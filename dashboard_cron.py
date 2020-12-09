@@ -148,7 +148,7 @@ with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
     dest.write("\n".join(map_urls))
 
-capture.capture(both_sets[0], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False)
+capture.capture(both_sets[0], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
 capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
