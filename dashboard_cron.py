@@ -4,7 +4,7 @@ from requests import get
 from json import dumps
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
-home = "/home/mich/"
+home = "/home/work/"
 sys.path.insert(1, f"{home}BX_tools")
 import capture
 
