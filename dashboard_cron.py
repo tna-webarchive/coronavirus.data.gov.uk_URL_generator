@@ -140,7 +140,7 @@ with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
 
 both_sets = get_all_urls(areaNames)
 map_urls = list(set(both_sets[1]))
-map_urls = map_urls[100]
+print(map_urls)
 
 print(today, "Dashboard capture initiated")
 capture_name = today.strftime("%b%d")#capture.check_validity(input("Please enter name of capture.>"))
