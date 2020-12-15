@@ -6,7 +6,7 @@ from json import dumps
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
 home = "/home/work/"
 sys.path.insert(1, f"{home}BX_tools")
-import capture
+import capture_cron
 
 def get_areaNames():
     ENDPOINT = "https://coronavirus.data.gov.uk/api/v1/lookup?"       #3.1 lookup query url root
@@ -139,16 +139,16 @@ with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
     areaNames = list(reader)
 
 both_sets = get_all_urls(areaNames)
-map_urls = list(set(both_sets[1]))
+map_urls = list(set(both_sets[1][:100]))
 
 print(today, "Dashboard capture initiated")
-capture_name = today.strftime("%b%d")#capture.check_validity(input("Please enter name of capture.>"))
+capture_name = today.strftime("%b%d")#capture_cron.check_validity(input("Please enter name of capture.>"))
 
 with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
     dest.write("\n".join(map_urls))
 
-capture.capture(both_sets[0], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
+capture_cron.capture(both_sets[0][:100], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
 capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
@@ -157,4 +157,4 @@ while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz")
     time.sleep(30)
 
 
-capture.combine_warcs(f"{CVDB_folder}{capture_folder}", name="FINALcombined_map_db")
+capture_cron.combine_warcs(f"{CVDB_folder}{capture_folder}", name="FINALcombined_map_db")
