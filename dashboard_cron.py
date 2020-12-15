@@ -140,13 +140,14 @@ with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
 
 both_sets = get_all_urls(areaNames)
 map_urls = list(set(both_sets[1]))
+map_urls = map_urls[100]
 
 print(today, "Dashboard capture initiated")
 capture_name = today.strftime("%b%d")#capture.check_validity(input("Please enter name of capture.>"))
 
 with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
-    dest.write("\n".join(map_urls[100]))
+    dest.write("\n".join(map_urls))
 
 capture.capture(both_sets[0][100], capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
