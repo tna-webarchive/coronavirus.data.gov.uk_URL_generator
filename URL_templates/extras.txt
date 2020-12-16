@@ -112,3 +112,5 @@ https://coronavirus.data.gov.uk/static/js/34.81b0c665.chunk.js
 https://coronavirus.data.gov.uk/static/js/36.6c0c5843.chunk.js
 https://coronavirus.data.gov.uk/static/js/35.20ca5b84.chunk.js
 https://coronavirus.data.gov.uk/static/js/13.3f30c4c8.chunk.js
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/cases/cardRatesByFiveYearAge.md
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/cases/cardCasesAndRatesByAgeUnderOver60.md
