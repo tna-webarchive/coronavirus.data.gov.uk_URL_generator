@@ -118,7 +118,7 @@ def get_all_urls(areaNames):
 os.chdir(home)
 today = datetime.today()
 todaystr = today.strftime("%Y%m%d")
-types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla"]
+types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla", "nhsTrust"]
 
 CVDB_folder = home + "covid_dashboard/"
 
