@@ -144,7 +144,7 @@ with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
     areaNames = list(reader)
 
 both_sets = get_all_urls(areaNames)
-map_urls = list(set(both_sets[1][:100]))
+map_urls = list(set(both_sets[1]))
 
 print(today, "Dashboard capture initiated")
 
@@ -171,7 +171,7 @@ covid3_patch = rud.get_urls('403,429,500')
 
 os.chdir(CVDB_folder)
 
-capture_cron.capture(both_sets[0][:100]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
+capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
 
 while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
