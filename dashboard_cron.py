@@ -155,7 +155,7 @@ stamp = datetime.today().strftime("%Y%m%d")
 
 os.system(command.replace('YYYYMMDD', todaystr))
 
-capture_cron.combine_warcs(f'{home}+browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', CVDB_folder, 'daily_covid3')
+capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', CVDB_folder, 'daily_covid3')
 
 capture_cron.generate_cdx(f'{CVDB_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
 cdx = capture_cron.Cdx(f'{CVDB_folder}/daily_covid3.cdxj')
