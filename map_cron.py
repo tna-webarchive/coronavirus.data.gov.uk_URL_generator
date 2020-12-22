@@ -52,8 +52,3 @@ while True:
         break
 
 os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "lastpatch_map.warc.gz")
-
-
-
-
-
