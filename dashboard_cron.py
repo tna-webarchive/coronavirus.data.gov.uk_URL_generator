@@ -127,6 +127,9 @@ capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 if os.path.isdir(CVDB_folder) == False:
     os.mkdir(CVDB_folder)
 
+if os.path.isdir(capture_folder) == False:
+    os.mkdir(capture_folder)
+
 os.chdir(CVDB_folder)
 
 areaName_files = [x for x in os.listdir() if (x.startswith("current_areaNames")) and (x.endswith(".csv"))]
@@ -157,8 +160,8 @@ os.system(command.replace('YYYYMMDD', todaystr))
 
 capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', capture_folder, 'daily_covid3')
 
-capture_cron.generate_cdx(f'{CVDB_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
-cdx = capture_cron.Cdx(f'{CVDB_folder}/daily_covid3.cdxj')
+capture_cron.generate_cdx(f'{capture_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
+cdx = capture_cron.Cdx(f'{capture_folder}/daily_covid3.cdxj')
 rud = cdx.create_rud()
 rud = rud.deduplicate()
 covid3_patch = rud.get_urls('403,429,500')
