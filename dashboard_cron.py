@@ -121,6 +121,8 @@ todaystr = today.strftime("%Y%m%d")
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla", "nhsTrust"]
 
 CVDB_folder = home + "covid_dashboard/"
+capture_name = today.strftime("%b%d")
+capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
 if os.path.isdir(CVDB_folder) == False:
     os.mkdir(CVDB_folder)
@@ -139,10 +141,9 @@ with open(f"current_areaNames_{todaystr}.csv", "r") as areaNames:
     areaNames = list(reader)
 
 both_sets = get_all_urls(areaNames)
-map_urls = list(set(both_sets[1][:100]))
+map_urls = list(set(both_sets[1]))
 
 print(today, "Dashboard capture initiated")
-capture_name = today.strftime("%b%d")#capture_cron.check_validity(input("Please enter name of capture.>"))
 
 with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
@@ -150,12 +151,11 @@ with open("map_urls.txt", "w") as dest:
 
 os.chdir(home+"browsertrix-crawler-main")
 
-command = 'docker-compose run crawler crawl --url https://www.nhs.uk/conditions/coronavirus-covid-19/ --workers 2 --timeout 30 --scope ^https?:\/\/www.nhs.uk/$ --scope ^https?:\/\/www.nhs.uk/.*coronavirus.*$ --scope ^https?:\/\/nhs.uk/.*coronavirus.*$ --scope ^https?:\/\/www.nhs.uk/.*covid.*$ --scope ^https?:\/\/nhs.uk/.*covid.*$ --userAgentSuffix The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/ webarchive-at-nationalarchives.gov.uk --scroll --collection YYYYMMDD_covid-19 --generateCDX'#; docker-compose run crawler crawl --url https://lginform.local.gov.uk/reports/view/lga-research/covid-19-case-tracker --workers 2 --timeout 300 --scope ^https?:\/\/lginform.local.gov.uk.*covid-19.*$ --scope ^https?:\/\/lginform.local.gov.uk/reports/view/.*$ --scope ^https?:\/\/lginform.local.gov.uk/reports/export_popup/.*$ --scope ^https?:\/\/developertools.esd.org.uk/.*$ --scope ^https?:\/\/webservices.esd.org.uk\/.*$ --scope ^.*https%3A%2F%2Fwebservices.esd.org.uk%2Fdata.*$ --scope ^https?:\/\/resources.esd.org.uk/scripts/.*$ --scope ^https?:\/\/inform-live.s3.eu-west-1.amazonaws.com/.*$ --userAgentSuffix The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/ --scroll --collection YYYYMMDD_covid-19 --generateCDX; docker-compose run crawler crawl --url https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-hospital-activity/ https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-daily-deaths/ https://www.england.nhs.uk/coronavirus/covid-19-vaccination-programme/ --workers 2 --timeout 30 --limit 1500 --scope ^https?:\/\/www.england.nhs.uk.*covid.*$ --scope ^https?:\/\/www.england.nhs.uk.*coronavirus.*$ --scope ^https?:\/\/www.england.nhs.uk.*wp-content.*$ --scope ^https?:\/\/www.england.nhs.uk.*mental-health.*dementia.*$ --exclude ^https?:\/\/www.england.nhs.uk\/.*\/page\/.*\/\?filter.*$ --userAgentSuffix The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/ --scroll --collection YYYYMMDD_covid-19 --generateCDX'
-stamp = datetime.today().strftime("%Y%m%d")
+command = 'docker-compose run crawler crawl --url https://www.nhs.uk/conditions/coronavirus-covid-19/ --workers 2 --timeout 30 --scope ^https?:\/\/www.nhs.uk/$ --scope ^https?:\/\/www.nhs.uk/.*coronavirus.*$ --scope ^https?:\/\/nhs.uk/.*coronavirus.*$ --scope ^https?:\/\/www.nhs.uk/.*covid.*$ --scope ^https?:\/\/nhs.uk/.*covid.*$ --userAgentSuffix The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/ webarchive-at-nationalarchives.gov.uk --scroll --collection YYYYMMDD_covid-19 --generateCDX; docker-compose run crawler crawl --url https://lginform.local.gov.uk/reports/view/lga-research/covid-19-case-tracker --workers 2 --timeout 300 --scope ^https?:\/\/lginform.local.gov.uk.*covid-19.*$ --scope ^https?:\/\/lginform.local.gov.uk/reports/view/.*$ --scope ^https?:\/\/lginform.local.gov.uk/reports/export_popup/.*$ --scope ^https?:\/\/developertools.esd.org.uk/.*$ --scope ^https?:\/\/webservices.esd.org.uk\/.*$ --scope ^.*https%3A%2F%2Fwebservices.esd.org.uk%2Fdata.*$ --scope ^https?:\/\/resources.esd.org.uk/scripts/.*$ --scope ^https?:\/\/inform-live.s3.eu-west-1.amazonaws.com/.*$ --userAgentSuffix The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/ --scroll --collection YYYYMMDD_covid-19 --generateCDX; docker-compose run crawler crawl --url https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-hospital-activity/ https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-daily-deaths/ https://www.england.nhs.uk/coronavirus/covid-19-vaccination-programme/ --workers 2 --timeout 30 --limit 1500 --scope ^https?:\/\/www.england.nhs.uk.*covid.*$ --scope ^https?:\/\/www.england.nhs.uk.*coronavirus.*$ --scope ^https?:\/\/www.england.nhs.uk.*wp-content.*$ --scope ^https?:\/\/www.england.nhs.uk.*mental-health.*dementia.*$ --exclude ^https?:\/\/www.england.nhs.uk\/.*\/page\/.*\/\?filter.*$ --userAgentSuffix The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/ --scroll --collection YYYYMMDD_covid-19 --generateCDX'
 
 os.system(command.replace('YYYYMMDD', todaystr))
 
-capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', CVDB_folder, 'daily_covid3')
+capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', capture_folder, 'daily_covid3')
 
 capture_cron.generate_cdx(f'{CVDB_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
 cdx = capture_cron.Cdx(f'{CVDB_folder}/daily_covid3.cdxj')
@@ -165,9 +165,8 @@ covid3_patch = rud.get_urls('403,429,500')
 
 os.chdir(CVDB_folder)
 
-capture_cron.capture(both_sets[0][:100]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
+capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
-capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
 while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
