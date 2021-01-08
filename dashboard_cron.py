@@ -121,7 +121,7 @@ todaystr = today.strftime("%Y%m%d")
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla", "nhsTrust"]
 
 CVDB_folder = home + "covid_dashboard/"
-capture_name = "TEST" + today.strftime("%b%d")
+capture_name = today.strftime("%b%d")
 capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
 if os.path.isdir(CVDB_folder) == False:
@@ -161,8 +161,7 @@ with open('/home/work/browsertrix-crawler_commands/browsertrix-crawler_commandsT
 
 os.system(command.replace('YYYYMMDD', todaystr))
 
-#capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}', 'daily_covid3')
-capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/NICE_test/archive/', f'{CVDB_folder}{capture_folder}', 'NICE_test')
+capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}', 'daily_covid3')
 
 capture_cron.generate_cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
 cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.cdxj')
