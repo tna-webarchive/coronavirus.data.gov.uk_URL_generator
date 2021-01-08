@@ -32,7 +32,7 @@ def get_areaNames():
 def get_all_urls(areaNames):
     formats = ["csv", "json", "xml"]    #4.1 Three possible formats of the queries
     all_urls = []
-    stamp = datetime(today.year, today.month+9, today.day)
+    stamp = datetime(today.year-1, today.month+9, today.day)
     stamp = f"{stamp:%Y}-{stamp:%m}-{stamp:%d}"
 
     for i, type in enumerate(types):
