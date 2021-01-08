@@ -188,11 +188,12 @@ os.mkdir(f'{capture_folder}/QA/RUD')
 os.system(f'mv {cdx} {capture_folder}/QA/{cdx.split("/")[-1]}')
 
 for x in rud.present:
-    with open(f'{capture_folder}/QA/RUD/{x}s', 'w') as dest:
+    with open(f'{capture_folder}/QA/RUD/{x}s.txt', 'w') as dest:
         dest.write('\n'.join(rud.rud[x]))
 
+print('Done')
 os.system(f'cp /tmp/coviddb_output.log {capture_folder}/QA/coviddb_output.log')
 os.system(f'cp /tmp/mapcap_output.log {capture_folder}/QA/mapcap_output.log')
 
-print('Finished')
+print('copied')
 
