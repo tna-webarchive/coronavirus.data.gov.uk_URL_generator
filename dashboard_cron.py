@@ -121,7 +121,7 @@ todaystr = today.strftime("%Y%m%d")
 types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla", "nhsTrust"]
 
 CVDB_folder = home + "covid_dashboard/"
-capture_name = today.strftime("%b%d")
+capture_name = "TEST" + today.strftime("%b%d")
 capture_folder = capture_name + "_" + today.strftime("%d%m%Y")
 
 if os.path.isdir(CVDB_folder) == False:
@@ -180,8 +180,8 @@ while not os.path.isfile(f"{capture_folder}/lastpatch_map.warc.gz"):
 
 capture_cron.combine_warcs(f"{capture_folder}", name="FINALcombined_map_db")
 
-cdx = capture_cron.Cdx(capture_cron.generate_cdx(f"{capture_folder}/FINALcombined_map_db.warc.gz"))
-rud = cdx.create_rud()
+cdx = capture_cron.generate_cdx(f"{capture_folder}/FINALcombined_map_db.warc.gz")
+rud = capture_cron.Cdx(cdx).create_rud()
 
 os.mkdir(f'{capture_folder}/QA')
 os.mkdir(f'{capture_folder}/QA/RUD')
