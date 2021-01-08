@@ -192,5 +192,7 @@ for x in rud.present:
     with open(f'{capture_folder}/RUD/{x}', 'w') as dest:
         dest.write('\n'.join(rud.rud[x]))
 
-os.system(f'cp -R /logs {capture_folder}/QA/logs')
+os.system(f'cp /tmp/coviddb_output.log {capture_folder}/QA/coviddb_output.log')
+os.system(f'cp /tmp/mapcap_output.log {capture_folder}/QA/coviddb_output.log')
+
 
