@@ -189,7 +189,7 @@ os.mkdir(f'{capture_folder}/QA/RUD')
 os.system(f'mv {cdx} {capture_folder}/QA/{cdx.split("/")[-1]}')
 
 for x in rud.present:
-    with open(f'{capture_folder}/RUD/{str(x)}s', 'w') as dest:
+    with open(f'{capture_folder}/RUD/{x}s', 'w') as dest:
         dest.write('\n'.join(rud.rud[x]))
 
 os.system(f'cp /tmp/coviddb_output.log {capture_folder}/QA/coviddb_output.log')
