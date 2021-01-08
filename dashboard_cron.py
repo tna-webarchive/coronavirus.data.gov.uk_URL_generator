@@ -167,16 +167,29 @@ capture_cron.generate_cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz',
 cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.cdxj')
 rud = cdx.create_rud()
 rud = rud.deduplicate()
-covid3_patch = rud.get_urls('403,429,500')
+covid3_patch = rud.get_urls('403,404,429,500')
 
 os.chdir(CVDB_folder)
 
 capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
-
-while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
+while not os.path.isfile(f"{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
     time.sleep(30)
 
+capture_cron.combine_warcs(f"{capture_folder}", name="FINALcombined_map_db")
 
-capture_cron.combine_warcs(f"{CVDB_folder}{capture_folder}", name="FINALcombined_map_db")
+cdx = capture_cron.Cdx(capture_cron.generate_cdx(f"{capture_folder}/FINALcombined_map_db.warc.gz"))
+rud = cdx.create_rud()
+
+os.mkdir(f'{capture_folder}/QA')
+os.mkdir(f'{capture_folder}/QA/RUD')
+
+os.system(f'mv {cdx} {capture_folder}/QA/{cdx.split("/")[-1]}')
+
+for x in rud.present:
+    with open(f'{capture_folder}/RUD/{x}', 'w') as dest:
+        dest.write('\n'.join(rud.rud[x]))
+
+os.system(f'cp -R /logs {capture_folder}/QA/logs')
+

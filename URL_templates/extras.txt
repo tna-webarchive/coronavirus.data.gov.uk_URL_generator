@@ -185,3 +185,5 @@ https://coronavirus.data.gov.uk/static/js/10.b18e3fa9.chunk.js
 https://coronavirus.data.gov.uk/static/js/22.490ac12f.chunk.js
 https://coronavirus.data.gov.uk/downloads/demographic/cases/publishDate_ageDemographic-unstacked.csv
 https://coronavirus.data.gov.uk/downloads/demographic/cases/publishDate_ageDemographic-stacked.csv
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinations.md
+https://coronavirus.data.gov.uk/public/assets/modals/cumPeopleReceivingSecondDose.md
