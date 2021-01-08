@@ -193,6 +193,6 @@ for x in rud.present:
         dest.write('\n'.join(rud.rud[x]))
 
 os.system(f'cp /tmp/coviddb_output.log {capture_folder}/QA/coviddb_output.log')
-os.system(f'cp /tmp/mapcap_output.log {capture_folder}/QA/coviddb_output.log')
+os.system(f'cp /tmp/mapcap_output.log {capture_folder}/QA/mapcap_output.log')
 
 
