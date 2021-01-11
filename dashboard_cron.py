@@ -181,6 +181,7 @@ capture_cron.combine_warcs(f"{capture_folder}", name="FINALcombined_map_db")
 
 cdx = capture_cron.generate_cdx(f"{capture_folder}/FINALcombined_map_db.warc.gz")
 rud = capture_cron.Cdx(cdx).create_rud()
+rud.deduplicate()
 
 os.mkdir(f'{capture_folder}/QA')
 os.mkdir(f'{capture_folder}/QA/RUD')
