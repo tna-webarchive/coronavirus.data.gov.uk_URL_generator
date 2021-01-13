@@ -187,3 +187,6 @@ https://coronavirus.data.gov.uk/downloads/demographic/cases/publishDate_ageDemog
 https://coronavirus.data.gov.uk/downloads/demographic/cases/publishDate_ageDemographic-stacked.csv
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinations.md
 https://coronavirus.data.gov.uk/public/assets/modals/cumPeopleReceivingSecondDose.md
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinationsWeekly.md
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinationsDaily.md
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/deaths/cardDeaths60DaysTimeSeries.md
