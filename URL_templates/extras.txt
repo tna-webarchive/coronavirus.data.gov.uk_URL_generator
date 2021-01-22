@@ -189,3 +189,4 @@ https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/car
 https://coronavirus.data.gov.uk/public/assets/modals/cumPeopleReceivingSecondDose.md
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinationsWeekly.md
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinationsDaily.md
+https://coronavirus.data.gov.uk/details/vaccinations
