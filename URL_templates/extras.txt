@@ -190,3 +190,6 @@ https://coronavirus.data.gov.uk/public/assets/modals/cumPeopleReceivingSecondDos
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinationsWeekly.md
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/healthcare/cardVaccinationsDaily.md
 https://coronavirus.data.gov.uk/details/vaccinations
+https://coronavirus-staging.data.gov.uk/
+https://coronavirus.data.gov.uk/easy_read/download/
+https://coronavirus.data.gov.uk/easy_read
