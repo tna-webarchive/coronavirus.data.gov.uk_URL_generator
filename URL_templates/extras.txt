@@ -193,3 +193,7 @@ https://coronavirus.data.gov.uk/details/vaccinations
 https://coronavirus-staging.data.gov.uk/
 https://coronavirus.data.gov.uk/easy_read/download/
 https://coronavirus.data.gov.uk/easy_read
+https://coronavirus.data.gov.uk/public/assets/modals/cumPeopleVaccinatedFirstDoseByPublishDate.md
+https://coronavirus.data.gov.uk/public/assets/modals/cumPeopleVaccinatedSecondDoseByPublishDate.md
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/deaths/cardNsoDailyDeathsTimeSeries.md
+https://coronavirus.data.gov.uk/api/v1/data?filters=&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22newPeopleVaccinatedFirstDoseByPublishDate%22:%22newPeopleVaccinatedFirstDoseByPublishDate%22,%22newPeopleVaccinatedSecondDoseByPublishDate%22:%22newPeopleVaccinatedSecondDoseByPublishDate%22,%22cumPeopleVaccinatedFirstDoseByPublishDate%22:%22cumPeopleVaccinatedFirstDoseByPublishDate%22,%22cumPeopleVaccinatedSecondDoseByPublishDate%22:%22cumPeopleVaccinatedSecondDoseByPublishDate%22%7D&format=
