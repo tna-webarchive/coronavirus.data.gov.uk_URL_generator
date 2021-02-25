@@ -152,7 +152,7 @@ with open("map_urls.txt", "w") as dest:
     dest.write(f"{capture_name}\n")
     dest.write("\n".join(map_urls))
 
-os.chdir(home+"browsertrix-crawler-main")
+os.chdir(home+"browsertrix-crawler")
 
 with open('/home/work/browsertrix-crawler_commands/browsertrix-crawler_commands.txt', 'r') as source:
     command = source.read()
@@ -161,7 +161,7 @@ with open('/home/work/browsertrix-crawler_commands/browsertrix-crawler_commands.
 
 os.system(command.replace('YYYYMMDD', todaystr))
 
-capture_cron.combine_warcs(f'{home}browsertrix-crawler-main/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}', 'daily_covid3')
+capture_cron.combine_warcs(f'{home}browsertrix-crawler/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}', 'daily_covid3')
 
 capture_cron.generate_cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
 cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.cdxj')
