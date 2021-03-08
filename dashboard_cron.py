@@ -171,7 +171,7 @@ covid3_patch = rud.get_urls('403,404,429,500')
 
 os.chdir(CVDB_folder)
 
-capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
+capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name, area=CVDB_folder, crawl_depth=1, num_tabs=3, browser="chrome:84", warc_name="dashboard_combined", progress=False, patch="y", patch_codes="403,429,500")
 
 while not os.path.isfile(f"{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
