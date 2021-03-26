@@ -229,3 +229,4 @@ https://coronavirus.data.gov.uk/public/assets/cms/changeLog.json
 https://coronavirus.data.gov.uk/public/assets/cms/vaccinations.json
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsDaily.md
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsDailyUptake.md
+https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsGivenDaily.md
