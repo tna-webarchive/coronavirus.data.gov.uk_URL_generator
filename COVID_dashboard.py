@@ -14,7 +14,7 @@ def get_areaNames():
 
     for i, type in enumerate(types):
         filters = [f"areaType={types[i]}"]   #3.2 To Add more filters enter another value in list
-        structure = {"name": "areaName"}     #3.2 To add more return data enter another value in dictionary
+        structure = {"value": "areaName"}     #3.2 To add more return data enter another value in dictionary
         api_params = {"filters": str.join(";", filters), "structure": dumps(structure, separators=(",", ":")),}  #3.3 Creates query URL string
         response = get(ENDPOINT, params=api_params, timeout=10)  #3.4 API call
 
@@ -22,7 +22,7 @@ def get_areaNames():
             raise RuntimeError(f'Request failed: {response.text}')  #3.5 Raises error if request fails
 
         names = response.json()["data"]                         #3.6 Creates list of names from JSON response
-        names = [x["name"].replace(" ", "%20") for x in names]  #3.7 Replaces sapce with %20 for URL
+        names = [x["value"].replace(" ", "%20") for x in names]  #3.7 Replaces sapce with %20 for URL
         areaNames[i] = names                                    #3.8 Adds list to master list of Area Names
 
     with open(f"current_areaNames_{todaystr[:8]}.csv", "w") as dest:
@@ -118,7 +118,7 @@ def get_all_urls(areaNames):
 os.chdir(home)
 today = datetime.today()
 todaystr = today.strftime("%Y%m%d")
-types = ["overview", "nation", "region", "nhsRegion", "utla", "ltla", "nhsTrust"]
+types = ["overview", "nation", "region", "nhsregion", "utla", "ltla", "nhsTrust"]
 
 CVDB_folder = home + "covid_dashboard/"
 
