@@ -230,3 +230,9 @@ https://coronavirus.data.gov.uk/public/assets/cms/vaccinations.json
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsDaily.md
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsDailyUptake.md
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsGivenDaily.md
+https://coronavirus.data.gov.uk/api/v1/lookup?filters=areaType=nation&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://coronavirus.data.gov.uk/api/v1/lookup?filters=areaType=region&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://coronavirus.data.gov.uk/api/v1/lookup?filters=areaType=utla%257CareaType=ltla&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://coronavirus.data.gov.uk/api/v1/lookup?filters=areaType=nhsNation&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://coronavirus.data.gov.uk/api/v1/lookup?filters=areaType=nhsRegion&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
+https://coronavirus.data.gov.uk/api/v1/lookup?filters=areaType=nhsTrust&structure=%7B%22value%22:%22areaName%22,%22areaType%22:%22areaType%22%7D
