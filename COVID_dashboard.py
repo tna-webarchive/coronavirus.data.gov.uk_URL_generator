@@ -28,7 +28,7 @@ def get_areaNames():
     except:
         print('LOOKUP FAILED: Using last known area names')
         yest_str = (today - timedelta(1)).strftime("%Y%m%d")
-        with open(f"current_areaNames_{yest_str[:8]}.csv", "r") as source:
+        with open(f"{ROOT}default_areaNames.csv", "r") as source:
             areaNames = source.read()
             areaNames = [x.split(',') for x in areaNames.split('\n') if len(x) > 0]
 
