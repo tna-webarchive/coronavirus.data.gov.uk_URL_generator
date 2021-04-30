@@ -30,7 +30,7 @@ def get_areaNames():
         yest_str = (today - timedelta(1)).strftime("%Y%m%d")
         with open(f"current_areaNames_{yest_str[:8]}.csv", "r") as source:
             areaNames = source.read()
-            areaNames = [x.split(',') for x in areaNames.split('\n')]
+            areaNames = [x.split(',') for x in areaNames.split('\n') if len(x) > 0]
 
     with open(f"current_areaNames_{todaystr[:8]}.csv", "w") as dest:
         writer = csv.writer(dest)
