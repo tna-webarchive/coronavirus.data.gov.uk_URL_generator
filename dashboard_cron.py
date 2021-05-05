@@ -4,7 +4,7 @@ from requests import get
 from json import dumps
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
-home = "/home/work/"
+home = "/home/ubuntu/"
 sys.path.insert(1, f"{home}BX_tools")
 import capture_cron
 
