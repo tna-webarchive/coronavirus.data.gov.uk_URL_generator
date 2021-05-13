@@ -30,6 +30,8 @@ while True:
             wait = 90 - t.minute
         else:
             wait = 30 - t.minute
+        if patch > 3:
+            wait = 15
         print(f"{datetime.now().strftime('%H:%M:%S')}: Waiting {wait} minutes to relaunch {len(to_patch)} URLs")
         time.sleep(wait*60)
     os.system(f'wget -O "temp.html" --no-verbose --input-file={"patch"*patch}map_urls.txt -e robots=off --tries=2 --waitretry=5 --user-agent="The National Archives UK Government Web Archive webarchive@nationalarchives.gov.uk" --warc-file="{"patch"*patch}map_capture" --warc-max-size=1G --wait=0.2 --limit-rate=300k')
@@ -37,8 +39,8 @@ while True:
     cdx = capture_cron.Cdx(f"{'patch'*patch}map_patch.cdxj")
     rud = cdx.create_rud()
     to_patch = rud.get_urls("403,429")
-    if patch > 6:
-        print("Patched 6 times so exiting capture.")
+    if patch > 18:
+        print("Patched 18 times so exiting capture.")
         break
     if len(to_patch) > 0:
         print(f"\nPATCHING {len(to_patch)} URLs....")
