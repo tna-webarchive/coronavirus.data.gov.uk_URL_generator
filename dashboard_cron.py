@@ -206,6 +206,6 @@ print('Done')
 os.system(f'cp /tmp/coviddb_output.log {capture_folder}/QA/coviddb_output.log')
 os.system(f'cp /tmp/mapcap_output.log {capture_folder}/QA/mapcap_output.log')
 
-os.system(f'cp {capture_folder}/FINALcombined_map_db.warc.gz /home/ubuntu/Desktop/{today.strftime("%d%m%")}.warc.gz')
+os.system(f'cp {capture_folder}/FINALcombined_map_db.warc.gz /home/ubuntu/Desktop/{today.strftime("%d_%B")}.warc.gz')
 print('copied')
 
