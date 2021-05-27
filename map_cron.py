@@ -17,9 +17,13 @@ with open(f"map_urls.txt", "r") as source:
 
 capture_name = map_urls.pop(0) + "_" + today
 
-os.rename("map_urls.txt", f"{capture_name}/map_urls.txt")
+map_dir = CVDB_folder+capture_name+'/map'
 
-os.chdir(CVDB_folder+capture_name)
+os.mkdir(map_dir)
+
+os.rename("map_urls.txt", f"{map_dir}/map_urls.txt")
+
+os.chdir(map_dir)
 
 patch = 0
 
@@ -49,8 +53,9 @@ while True:
         with open(f"{'patch'*patch}map_urls.txt", "w") as dest:
             dest.write(l)
     else:
+        capture_cron.combine_warcs(map_dir, name='lastpatch_map.warc.gz')
         print("\ncapture is complete")
         print(f"\nWait for dashboard capture to finish. Final combined WARC will be located at: \n{CVDB_folder}{capture_name}/FINALcombined_map_db.warc.gz")
         break
 
-os.rename(f"{'patch'*patch}map_capture-00000.warc.gz", "lastpatch_map.warc.gz")
+os.rename(f"lastpatch_map.warc.gz", f"{CVDB_folder+capture_name}/lastpatch_map.warc.gz")
