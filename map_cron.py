@@ -53,7 +53,7 @@ while True:
         with open(f"{'patch'*patch}map_urls.txt", "w") as dest:
             dest.write(l)
     else:
-        capture_cron.combine_warcs(map_dir, name='lastpatch_map.warc.gz')
+        capture_cron.combine_warcs(map_dir, name='lastpatch_map')
         print("\ncapture is complete")
         print(f"\nWait for dashboard capture to finish. Final combined WARC will be located at: \n{CVDB_folder}{capture_name}/FINALcombined_map_db.warc.gz")
         break
