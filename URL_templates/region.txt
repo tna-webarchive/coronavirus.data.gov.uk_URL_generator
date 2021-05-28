@@ -37,6 +37,7 @@ https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=region;areaName={na
 https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=region;areaName={name};date%253E{stamp}&structure=%7B%22date%22:%22date%22,%22newCasesBySpecimenDateChangePercentage%22:%22newCasesBySpecimenDateChangePercentage%22%7D
 https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=region;areaName={name}&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22newCasesBySpecimenDateAgeDemographics%22:%22newCasesBySpecimenDateAgeDemographics%22%7D&format=
 https://coronavirus.data.gov.uk/details/testing?areaType=region&areaName={name}
+https://coronavirus.data.gov.uk/details/vaccinations?areaType=region&areaName={name}
 https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=region;areaName={name}&latestBy=newVirusTests&structure=%7B%22date%22:%22date%22,%22value%22:%22newVirusTests%22%7D
 https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=region;areaName={name}&latestBy=cumVirusTests&structure=%7B%22date%22:%22date%22,%22value%22:%22cumVirusTests%22%7D
 https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=region;areaName={name}&latestBy=plannedPCRCapacityByPublishDate&structure=%7B%22date%22:%22date%22,%22value%22:%22plannedPCRCapacityByPublishDate%22%7D
