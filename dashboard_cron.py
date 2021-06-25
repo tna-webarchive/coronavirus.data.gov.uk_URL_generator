@@ -198,7 +198,7 @@ config['workers'] = 4
 config['userAgentSuffix'] = 'The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/'
 config['behaviours'] = 'autoscroll,autoplay,autofetch,siteSpecific'
 config['sitemap'] = 'coronavirus.data.gov.uk/sitemap.xml'
-config['limit'] = 5 #test
+#config['limit'] = 5 #test
 
 bx_config = yaml.dump(config)
 
@@ -229,19 +229,19 @@ cdx = capture_cron.generate_cdx(warcs[0])
 rud = capture_cron.Cdx(cdx).create_rud()
 rud.deduplicate()
 
-os.mkdir(f'{capture_folder}/QA')
-os.mkdir(f'{capture_folder}/QA/RUD')
+os.mkdir(f'{CVDB_folder}{capture_folder}/QA')
+os.mkdir(f'{CVDB_folder}{capture_folder}/QA/RUD')
 
-os.system(f'mv {cdx} {capture_folder}/QA/{cdx.split("/")[-1]}')
+os.system(f'mv {cdx} {CVDB_folder}{capture_folder}/QA/{cdx.split("/")[-1]}')
 
 for x in rud.present:
-    with open(f'{capture_folder}/QA/RUD/{x}s.txt', 'w') as dest:
+    with open(f'{CVDB_folder}{capture_folder}/QA/RUD/{x}s.txt', 'w') as dest:
         dest.write('\n'.join(rud.rud[x]))
 
 print('Done')
-os.system(f'cp /tmp/coviddb_output.log {capture_folder}/QA/coviddb_output.log')
-os.system(f'cp /tmp/mapcap_output.log {capture_folder}/QA/mapcap_output.log')
+os.system(f'cp /tmp/coviddb_output.log {CVDB_folder}{capture_folder}/QA/coviddb_output.log')
+os.system(f'cp /tmp/mapcap_output.log {CVDB_folder}{capture_folder}/QA/mapcap_output.log')
 
-os.system(f'cp {capture_folder}/FINALcombined_map_db.warc.gz /home/ubuntu/Desktop/{today.strftime("%d_%B")}.warc.gz')
+os.system(f'cp {CVDB_folder}{capture_folder}/FINALcombined_map_db.warc.gz /home/ubuntu/Desktop/{today.strftime("%d_%B")}.warc.gz')
 print('copied')
 
