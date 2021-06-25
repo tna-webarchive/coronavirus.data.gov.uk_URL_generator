@@ -183,7 +183,7 @@ for _warc in daily_3:
 
 os.chdir(CVDB_folder)
 
-with open(f'{CVDB_folder}{capture_folder}/urls{todaystr}.txt', 'w') as dest:
+with open(f'{CVDB_folder}{capture_folder}/urlfile.txt', 'w') as dest:
     dest.write('\n'.join(both_sets[0]+covid3_patch))
 
 with open(f'{ROOT}bx-crawler-template.txt', 'r') as source:
@@ -191,7 +191,7 @@ with open(f'{ROOT}bx-crawler-template.txt', 'r') as source:
 
 config = yaml.load(template, Loader=yaml.FullLoader)
 
-config['url(s)'] = f'{CVDB_folder}{capture_folder}/urls{todaystr}.txt'
+config['url(s)'] = f'{CVDB_folder}{capture_folder}/urlfile.txt'
 config['scope'] = '\"^.*coronavirus(-staging)?\.data\.gov\.uk.*$|^.*az416426\.vo\.msecnd\.net.*$|^.*api\.maptiler\.com.*$|^.*ssl\.geoplugin\.net.*$\"'
 config['collection'] = capture_name
 config['workers'] = 4
