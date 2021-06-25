@@ -198,6 +198,7 @@ config['workers'] = 4
 config['userAgentSuffix'] = 'The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/'
 config['behaviours'] = 'autoscroll,autoplay,autofetch,siteSpecific'
 config['sitemap'] = 'coronavirus.data.gov.uk/sitemap.xml'
+config['limit'] = 5 #test
 
 bx_config = yaml.dump(config)
 
@@ -217,13 +218,14 @@ warcs.combine_folder(collection_path, f'{CVDB_folder}{capture_folder}/dashboard_
 #                      warc_name="dashboard_combined", progress=False,
 #                      patch="y", patch_codes="403,429,500")
 
-while not os.path.isfile(f"{capture_folder}/lastpatch_map.warc.gz"):
+while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
     time.sleep(30)
 
-warcs.combine_folder(f"{capture_folder}", destination=f"{capture_folder}/FINALcombined_map_db.warc.gz")
+warcs = warcs.combine_folder(f"{capture_folder}", destination=f"{capture_folder}/FINALcombined_map_db.warc.gz")
 
-cdx = capture_cron.generate_cdx(f"{capture_folder}/FINALcombined_map_db.warc.gz")
+
+cdx = capture_cron.generate_cdx(wacs[0])
 rud = capture_cron.Cdx(cdx).create_rud()
 rud.deduplicate()
 
