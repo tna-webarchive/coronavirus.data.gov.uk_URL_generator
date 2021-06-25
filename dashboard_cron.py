@@ -197,6 +197,7 @@ config['collection'] = capture_name
 config['workers'] = 4
 config['userAgentSuffix'] = 'The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/'
 config['behaviours'] = 'autoscroll,autoplay,autofetch,siteSpecific'
+config['sitemap'] = 'coronavirus.data.gov.uk/sitemap.xml'
 
 bx_config = yaml.dump(config)
 
