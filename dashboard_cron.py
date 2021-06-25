@@ -206,7 +206,7 @@ with open(f'{CVDB_folder}{capture_folder}/dashboard.yaml', 'w') as dest:
 
 crawl = crawl_manager.Crawl(f'{CVDB_folder}{capture_folder}/dashboard.yaml')
 
-collection_path = crawl.run()
+collection_path = crawl.run() + 'archive/'
 
 warcs.combine_folder(collection_path, f'{CVDB_folder}{capture_folder}/dashboard_combined.warc.gz', safe=False)
 
