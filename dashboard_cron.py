@@ -2,11 +2,14 @@ from datetime import datetime, date, timedelta
 import sys, os, csv, time
 from requests import get
 from json import dumps
+import yaml
 
 ROOT = os.path.dirname(os.path.abspath(__file__)) + "/"
 home = "/home/ubuntu/"
 sys.path.insert(1, f"{home}BX_tools")
+sys.path.insert(1, f"{home}PycharmProjects/ukgwa-crawls")
 import capture_cron
+import crawl_manager, warcs
 
 def get_areaNames():
     try:
@@ -168,7 +171,7 @@ with open('/home/ubuntu/browsertrix-crawler_commands/browsertrix-crawler_command
 
 os.system(command.replace('YYYYMMDD', todaystr))
 
-capture_cron.combine_warcs(f'{home}browsertrix-crawler/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}', 'daily_covid3')
+warcs.combine_folder(f'{home}browsertrix-crawler/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', safe=False)
 
 capture_cron.generate_cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
 cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.cdxj')
@@ -178,16 +181,44 @@ covid3_patch = rud.get_urls('403,404,429,500')
 
 os.chdir(CVDB_folder)
 
-capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name,
-                     area=CVDB_folder, crawl_depth=1, num_tabs=4, browser="chrome:84",
-                     warc_name="dashboard_combined", progress=False,
-                     patch="y", patch_codes="403,429,500")
+with open(f'{CVDB_folder}{capture_folder}/urls{todaystr}.txt', 'w') as dest:
+    dest.write('\n'.join(both_sets[0]+covid3_patch))
+
+with open(f'{ROOT}bx-crawler-template.txt', 'r') as source:
+    template = source.read()
+
+config = yaml.load(template, Loader=yaml.FullLoader)
+
+config['url(s)'] = f'{CVDB_folder}{capture_folder}/urls{todaystr}.txt'
+config['scope'] = '^.*coronavirus(-staging)?\.data\.gov\.uk.*$|^.*az416426\.vo\.msecnd\.net.*$|^.*api\.maptiler\.com.*$|^.*ssl\.geoplugin\.net.*$'
+config['collection'] = capture_name
+config['workers'] = 4
+config['userAgentSuffix'] = 'The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/'
+config['behaviours'] = 'autoscroll,autoplay,autofetch,siteSpecific'
+
+bx_config = yaml.dump(config)
+
+with open(f'{CVDB_folder}{capture_folder}/dashboard.yaml', 'w') as dest:
+    dest.write(bx_config)
+
+crawl = crawl_manager.Crawl(f'{CVDB_folder}{capture_folder}/dashboard.yaml')
+
+collection_path = crawl.run()
+
+warcs.combine_folder(collection_path, f'{CVDB_folder}{capture_folder}/dashboard_combined.warc.gz', safe=False)
+
+
+#
+# capture_cron.capture(both_sets[0]+covid3_patch, capture_name=capture_name,
+#                      area=CVDB_folder, crawl_depth=1, num_tabs=4, browser="chrome:84",
+#                      warc_name="dashboard_combined", progress=False,
+#                      patch="y", patch_codes="403,429,500")
 
 while not os.path.isfile(f"{capture_folder}/lastpatch_map.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
     time.sleep(30)
 
-capture_cron.combine_warcs(f"{capture_folder}", name="FINALcombined_map_db")
+warcs.combine_folder(f"{capture_folder}", destination=f"{capture_folder}/FINALcombined_map_db.warc.gz")
 
 cdx = capture_cron.generate_cdx(f"{capture_folder}/FINALcombined_map_db.warc.gz")
 rud = capture_cron.Cdx(cdx).create_rud()
