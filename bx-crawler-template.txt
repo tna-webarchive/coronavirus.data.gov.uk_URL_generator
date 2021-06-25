@@ -1,0 +1,32 @@
+---
+# Required
+url(s):             # Can be a single URL, a list or a path to a list of URLs
+collection:          # name of collection
+scope:               # Can be a single scope or a list of scopes (if blank, defaults to domain of URL)
+
+# Defaults
+workers: 3
+timeout: 200
+generateCDX: true
+combineWARC: true
+userAgentSuffix: "The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/"
+rolloverSize: 4800000000      # [1000000000]
+
+# Advanced
+newContext:          # ["page"]
+waitUntil:           # ["load,networkidle0"]
+limit:
+userAgent:
+exclude:
+headless:            # [false]
+driver:              # ["/app/defaultDriver.js"]
+generateWACZ:
+logging:             # ["stats"]
+text:
+cwd:                 # ["/crawls" ()]
+mobileDevice:
+useSitemap:
+statsFilename:
+behaviours:          # ["autoplay,autofetch,siteSpecific"]
+profile: 
+screencastPort:      # [0]
