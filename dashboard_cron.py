@@ -192,7 +192,7 @@ with open(f'{ROOT}bx-crawler-template.txt', 'r') as source:
 config = yaml.load(template, Loader=yaml.FullLoader)
 
 config['url(s)'] = f'{CVDB_folder}{capture_folder}/urls{todaystr}.txt'
-config['scope'] = '^.*coronavirus(-staging)?\.data\.gov\.uk.*$|^.*az416426\.vo\.msecnd\.net.*$|^.*api\.maptiler\.com.*$|^.*ssl\.geoplugin\.net.*$'
+config['scope'] = '\"^.*coronavirus(-staging)?\.data\.gov\.uk.*$|^.*az416426\.vo\.msecnd\.net.*$|^.*api\.maptiler\.com.*$|^.*ssl\.geoplugin\.net.*$\"'
 config['collection'] = capture_name
 config['workers'] = 4
 config['userAgentSuffix'] = 'The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/'
