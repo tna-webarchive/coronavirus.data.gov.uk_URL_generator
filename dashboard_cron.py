@@ -171,13 +171,15 @@ with open('/home/ubuntu/browsertrix-crawler_commands/browsertrix-crawler_command
 
 os.system(command.replace('YYYYMMDD', todaystr))
 
-warcs.combine_folder(f'{home}browsertrix-crawler/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', safe=False)
+daily_3 = warcs.combine_folder(f'{home}browsertrix-crawler/crawls/collections/{todaystr}_covid-19/archive/', f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', safe=False)
 
-capture_cron.generate_cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.warc.gz', 'daily_covid3.cdxj')
-cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/daily_covid3.cdxj')
-rud = cdx.create_rud()
-rud = rud.deduplicate()
-covid3_patch = rud.get_urls('403,404,429,500')
+covid3_patch = []
+for _warc in daily_3
+    capture_cron.generate_cdx(f'{_warc}', f'{_warc.split(".")[0]}.cdxj')
+    cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/{_warc.split(".")[0]}.cdxj')
+    rud = cdx.create_rud()
+    rud = rud.deduplicate()
+    covid3_patch += rud.get_urls('403,404,429,500')
 
 os.chdir(CVDB_folder)
 
