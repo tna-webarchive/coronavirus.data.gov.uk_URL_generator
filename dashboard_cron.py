@@ -176,7 +176,7 @@ daily_3 = warcs.combine_folder(f'{home}browsertrix-crawler/crawls/collections/{t
 covid3_patch = []
 for _warc in daily_3:
     capture_cron.generate_cdx(f'{_warc}', f'{_warc.split(".")[0]}.cdxj')
-    cdx = capture_cron.Cdx(f'{CVDB_folder}{capture_folder}/{_warc.split(".")[0]}.cdxj')
+    cdx = capture_cron.Cdx(f'{_warc.split(".")[0]}.cdxj')
     rud = cdx.create_rud()
     rud = rud.deduplicate()
     covid3_patch += rud.get_urls('403,404,429,500')
