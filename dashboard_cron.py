@@ -222,10 +222,10 @@ while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz")
     print("\rWaiting for map urls crawl to finish...", end="")
     time.sleep(30)
 
-warcs = warcs.combine_folder(f"{capture_folder}", destination=f"{capture_folder}/FINALcombined_map_db.warc.gz")
+warcs = warcs.combine_folder(f"{CVDB_folder}{capture_folder}/", destination=f"{CVDB_folder}{capture_folder}/FINALcombined_map_db.warc.gz")
 
 
-cdx = capture_cron.generate_cdx(wacs[0])
+cdx = capture_cron.generate_cdx(warcs[0])
 rud = capture_cron.Cdx(cdx).create_rud()
 rud.deduplicate()
 
