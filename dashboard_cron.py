@@ -218,7 +218,7 @@ warcs.combine_folder(collection_path, f'{CVDB_folder}{capture_folder}/dashboard_
 #                      warc_name="dashboard_combined", progress=False,
 #                      patch="y", patch_codes="403,429,500")
 
-while not os.path.isfile(f"{CVDB_folder}{capture_folder}/lastpatch_map.warc.gz"):
+while not os.path.isfile(f"{CVDB_folder}{capture_folder}/FullMap.warc.gz"):
     print("\rWaiting for map urls crawl to finish...", end="")
     time.sleep(30)
 

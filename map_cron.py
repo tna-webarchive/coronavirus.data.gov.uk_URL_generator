@@ -58,4 +58,4 @@ while True:
         print(f"\nWait for dashboard capture to finish. Final combined WARC will be located at: \n{CVDB_folder}{capture_name}/FINALcombined_map_db.warc.gz")
         break
 
-os.rename(f"lastpatch_map.warc.gz", f"{CVDB_folder+capture_name}/lastpatch_map.warc.gz")
+os.rename(f"lastpatch_map.warc.gz", f"{CVDB_folder+capture_name}/FullMap.warc.gz")
