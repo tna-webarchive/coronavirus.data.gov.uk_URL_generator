@@ -5,6 +5,7 @@ https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/testing/cardPC
 https://coronavirus.data.gov.uk/static/js/34.81b0c665.chunk.js
 https://coronavirus.data.gov.uk/map/assets/4/8/5.pbf
 https://coronavirus.data.gov.uk/easy_read
+https://coronavirus.data.gov.uk/easy_read/download
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/cases/cardCasesAndRatesByAgeAndSex.md
 https://coronavirus.data.gov.uk/downloads/supplements/lookup_table.csv
 https://coronavirus.data.gov.uk/downloads/maps/data/utla-RollingRate.json
