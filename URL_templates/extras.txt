@@ -268,3 +268,12 @@ https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=overview&structure=
 https://coronavirus.data.gov.uk/api/v1/data?filters=&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22newVaccinesGivenByPublishDate%22:%22newVaccinesGivenByPublishDate%22,%22cumVaccinesGivenByPublishDate%22:%22cumVaccinesGivenByPublishDate%22%7D&format=
 https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=utla&latestBy=cumVaccinationFirstDoseUptakeByVaccinationDatePercentage&structure=%7B%22areaName%22:%22areaName%22,%22cumPeopleVaccinatedFirstDoseByVaccinationDate%22:%22cumPeopleVaccinatedFirstDoseByVaccinationDate%22,%22cumVaccinationFirstDoseUptakeByVaccinationDatePercentage%22:%22cumVaccinationFirstDoseUptakeByVaccinationDatePercentage%22,%22cumPeopleVaccinatedSecondDoseByVaccinationDate%22:%22cumPeopleVaccinatedSecondDoseByVaccinationDate%22,%22cumVaccinationSecondDoseUptakeByVaccinationDatePercentage%22:%22cumVaccinationSecondDoseUptakeByVaccinationDatePercentage%22%7D
 https://coronavirus.data.gov.uk/public/assets/modals/cardMetadata/vaccinations/cardVaccinationsDailyVaccinationDate.md
+https://coronavirus.data.gov.uk/details/interactive-map/vaccinations
+https://coronavirus.data.gov.uk/downloads/maps/vax-data_latest.geojson
+https://coronavirus.data.gov.uk/public/assets/geo/style_v5.json
+https://openmaptiles.github.io/positron-gl-style/sprite.json
+https://openmaptiles.github.io/positron-gl-style/sprite.png
+https://coronavirus.data.gov.uk/api/generic/soa/msoa/undefined/cumVaccinationFirstDoseUptakeByVaccinationDatePercentage
+https://coronavirus.data.gov.uk/api/generic/soa/msoa/undefined/cumVaccinationCompleteCoverageByVaccinationDatePercentage
+https://coronavirus.data.gov.uk/api/generic/code/msoa/undefined
+https://coronavirus.data.gov.uk/api/generic/soa/nation/E92000001/cumVaccinationCompleteCoverageByVaccinationDatePercentage
