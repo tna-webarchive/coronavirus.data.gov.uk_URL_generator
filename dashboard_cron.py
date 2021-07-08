@@ -194,7 +194,7 @@ config = yaml.load(template, Loader=yaml.FullLoader)
 config['url(s)'] = f'{CVDB_folder}{capture_folder}/urlfile.txt'
 config['scope'] = '\"^.*coronavirus(-staging)?\.data\.gov\.uk.*$|^.*az416426\.vo\.msecnd\.net.*$|^.*api\.maptiler\.com.*$|^.*ssl\.geoplugin\.net.*$\"'
 config['collection'] = capture_name
-config['workers'] = 4
+config['workers'] = 6
 config['userAgentSuffix'] = 'The National Archives UK Government Web Archive:nationalarchives.gov.uk/webarchive/'
 config['behaviours'] = 'autoscroll,autoplay,autofetch,siteSpecific'
 config['sitemap'] = 'coronavirus.data.gov.uk/sitemap.xml'
